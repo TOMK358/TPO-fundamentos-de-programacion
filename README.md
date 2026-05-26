@@ -24,5 +24,11 @@ CTRL Ñ
 
 git remote add origin https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
 
+git config --global user.name "Tu Nombre"
+
+git config --global user.email "tumail@gmail.com"
+(same as github)
+
+
 
 
