@@ -62,6 +62,9 @@ Sync Changes
 o:
 
 Push
+
+
+
 Primera vez: branch main
 
 A veces se necesita esto:
