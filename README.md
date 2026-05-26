@@ -37,6 +37,11 @@ git config --global user.email "tumail@gmail.com"
 (same as github)
 
 
+ANTES DEL COMMIT 
+
+HAGAN UN git pull (esto va a copiar el codigo del repo en su IDE)
+
+
 Como hacer un commit desde VS Code
 Paso a paso
 A. Agregá archivos al commit
