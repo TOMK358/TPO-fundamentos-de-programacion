@@ -15,6 +15,6 @@ Open CMD
 
 cd desktop (si se quiere guardar en el escritorio la carpeta, en cualquier otro caso hacer cd la carpeta querida)
 
-https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
+git clone https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
 
 
