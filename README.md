@@ -17,6 +17,13 @@ cd desktop (si se quiere guardar en el escritorio la carpeta, en cualquier otro 
 
 git clone https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
 
+Posible forma de tener que abrir el proyecto en VS CODE
+
+cd TU carpeta guardada
+
+cd TPO-fundamentos-de-programacion
+
+code .
 
 Connect git with Visual studio Code 
 
