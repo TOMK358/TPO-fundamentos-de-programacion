@@ -58,28 +58,43 @@ Tocá el + al lado de cada archivo
 o arriba donde dice:
 
 Stage All Changes
-B. Escribí el mensaje del commit
+
+
+Escribí el mensaje del commit
+
 
 Arriba aparece una caja de texto.
 
+
 Ejemplo:
 
+
 Agregué sistema de login
-C. Confirmá el commit
+
+
+Confirmá el commit
+
 
 Tocá:
 
+
 Commit
 
-o el tilde ✔.
 
-6. Subir a GitHub (push)
+o el tilde
+
+
+Subir a GitHub (push)
+
 
 Después del commit:
 
+
 Sync Changes
 
+
 o:
+
 
 Push
 
