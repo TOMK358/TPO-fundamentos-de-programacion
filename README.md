@@ -43,7 +43,7 @@ code .
 ## Connect git with Visual studio Code 
 
 
-CTRL Ñ 
+Abrir la terminal
 
 
 git remote add origin https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
