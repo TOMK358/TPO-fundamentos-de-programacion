@@ -5,7 +5,7 @@
 Resolucion del tpo propuesto, resolucion de problemas de la empresa ficticia "UADEtech corp"
 
 
-##PREREQUISIST DOWNLOAD
+## PREREQUISIST DOWNLOAD
 
 
 Python Lastest recomended
