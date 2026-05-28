@@ -5,13 +5,15 @@ ABOUT
 Resolucion del tpo propuesto, resolucion de problemas de la empresa ficticia "UADEtech corp"
 
 
-PREREQUISIST
+PREREQUISIST DOWNLOAD
 
 
 Python Lastest recomended
 
 
 git 
+
+https://git-scm.com/install/
 
 SETUP
 Clone the repository:
