@@ -1,4 +1,4 @@
-# TPO-fundamentos-de-programacion
+# TPO-fundamentos-de-programacion (No se usan returns o breaks en ciclos)
 
 ## ABOUT
 
