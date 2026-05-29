@@ -29,6 +29,8 @@ git clone https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
 
 ## Posible forma de tener que abrir el proyecto en VS CODE
 
+Open CMD
+
 
 cd TU carpeta guardada
 
