@@ -20,7 +20,6 @@ https://git-scm.com/install/
 
 Clone the repository:
 
-
 Open CMD 
 
 cd desktop (si se quiere guardar en el escritorio la carpeta, en cualquier otro caso hacer cd la carpeta querida)
@@ -120,5 +119,6 @@ A veces se necesita esto:
 git branch -M main
 git push -u origin main
 
+.hola balta y tomi uwu.
 
 
