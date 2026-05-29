@@ -15,7 +15,7 @@ git
 
 https://git-scm.com/install/
 
-## SETUP
+# SETUP
 
 
 Clone the repository:
