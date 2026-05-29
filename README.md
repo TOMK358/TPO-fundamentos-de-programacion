@@ -43,6 +43,8 @@ code .
 
 ## Connect git with Visual studio Code 
 
+Desde la carpeta clonada del repo
+
 
 Abrir la terminal
 
