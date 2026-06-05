@@ -79,7 +79,7 @@ git config --global user.email "tumail@gmail.com"
 
 ## ANTES DEL COMMIT 
 
-HAGAN UN git pull (esto va a copiar el codigo del repo en su IDE)
+HAGAN UN git pull origin main (esto va a copiar el codigo del repo en su IDE)
 
 
 ## Como hacer un commit desde VS Code
