@@ -69,8 +69,6 @@ Desde la carpeta clonada del repo
 Abrir la terminal
 
 
-git remote add origin https://github.com/TOMK358/TPO-fundamentos-de-programacion.git
-
 
 git config --global user.name "Tu Nombre"
 
