@@ -88,6 +88,8 @@ Paso a paso
 
 Agregá archivos al commit
 
+A la IZQUIERDA del VISUAL, ir a la opcion "SOURCE CONTROL"
+
 Tocá el + al lado de cada archivo
 o arriba donde dice:
 
