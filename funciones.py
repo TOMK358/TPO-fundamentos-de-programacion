@@ -123,4 +123,4 @@ def modificarStock(lst_codigos, lst_stock):
         else:
             print("Producto no encontrado")
 
-        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): ")) 
