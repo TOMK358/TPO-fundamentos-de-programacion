@@ -5,7 +5,7 @@ def mostrarMenu():
     print("\n--- MENU ---")
     print("1. Alta de productos")
     print("2. Modificar stock")
-    print("3. Buscar producto")
+    print("3. Eliminar producto")
     print("4. Mostrar productos")
     print("8. Salir")
 
@@ -124,3 +124,29 @@ def modificarStock(lst_codigos, lst_stock):
             print("Producto no encontrado")
 
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): ")) 
+
+
+
+def eliminarProducto(lst_codigos, lst_stock):
+
+    codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+
+    while codigo != -1:
+
+        if existecodigo(lst_codigos, codigo):
+
+            indice = -1
+
+            for i in range(len(lst_codigos)):
+                if lst_codigos[i] == codigo:
+                    indice = i
+
+            lst_codigos.pop(indice)
+            lst_stock.pop(indice)
+
+            print("Producto eliminado correctamente")
+
+        else:
+            print("Producto no encontrado")
+
+        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))

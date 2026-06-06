@@ -1,9 +1,51 @@
-#aca va el main y a su vez se ejecutara el programa aca tambien
+import funciones
 
-def main ():
-    print("Bienvenido al main")
-    print("algo mas/1 ")
+def main():
+
+    lst_codigos = []    
+    lst_nombre = []
+    lst_stock = []
+
+    opcion = 0
+
+    while opcion != 8:
+
+        funciones.mostrarMenu()
+
+        opcion = funciones.ingresar_opcionMenu()
+
+        match opcion:
+
+            case 1:
+                funciones.altaProductos(
+                    lst_codigos,
+                    lst_nombre,
+                    lst_stock
+                )
+
+            case 2:
+                funciones.modificarStock(
+                    lst_codigos,
+                    lst_stock
+                )
+
+            case 3:
+                funciones.eliminarProducto(
+                    lst_codigos,
+                    lst_stock
+                )
+
+            case 4:
+                funciones.mostrarProductos(
+                    lst_codigos,
+                    lst_nombre,
+                    lst_stock
+                )
+
+            case 8:
+                print("Programa finalizado")
 
 
-main ()
+
+main()
 
