@@ -1,6 +1,7 @@
 #aca creamos funciones
 import random
 
+#MENU USADO PARA MOSTRAR LAS OPCIONES DISPONIBLES AL USUARIO
 def mostrarMenu():
     print("\n--- MENU ---")
     print("1. Alta de productos")
@@ -9,7 +10,8 @@ def mostrarMenu():
     print("4. Mostrar productos")
     print("8. Salir")
 
-
+#pedimos al usuario que ingrese una opcion para manejar el menu, y comprobamos que la opcion ingresada sea valida (entre 1 y 5, o 8 para salir), si no lo es, 
+# se pide nuevamente la opcion hasta que sea valida
 def ingresar_opcionMenu():
     op = int(input("Seleccione una opcion: "))
 
@@ -19,7 +21,7 @@ def ingresar_opcionMenu():
 
     return op
 
-
+#comprueba que el numero ingresado sea positivo, si no lo es, pide nuevamente el numero hasta que sea positivo
 def ingresarPositivo(msg):
     num = int(input(msg))
 
@@ -32,6 +34,7 @@ def ingresarPositivo(msg):
 
 def existecodigo(lst_codigos, codigo):
 
+    #recorre la lista de codigos y si encuentra el codigo ingresado, devuelve True, sino devuelve False
     for i in range(len(lst_codigos)):
         if lst_codigos[i] == codigo:
             return True
@@ -43,6 +46,7 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
 
     codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
 
+    #comprueba que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
     while codigo <= 0 and codigo != -1:
         codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
@@ -52,6 +56,7 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
 
         cantidad = random.randint(1, 50)
 
+        #si el codigo ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
         if existecodigo(lst_codigos, codigo):
             print("El codigo ya existe")
         else:
@@ -61,8 +66,10 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
 
             print("Producto agregado correctamente")
 
+        #se pide el codigo nuevamente para seguir agregando productos, o finalizar el proceso ingresando -1
         codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
 
+        #realiza la misma comprobacion que al inicio para asegurarse de que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
         while codigo <= 0 and codigo != -1:
             codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
@@ -74,13 +81,14 @@ def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
-        print("codigo | nombre | stock")
+        print("codigo  nombre  stock")
         for i in range(len(lst_codigos)):
             print(
                 lst_codigos[i],   lst_nombres[i],   lst_stock[i]
             )
 
 
+#todavia no se usa pero se usara despues (con algunos cambios segun el uso que le demos)
 def buscarProducto(lst_codigos, lst_stock):
 
     codigo = int(input("Ingrese el codigo a buscar (-1 para finalizar): "))
@@ -92,9 +100,6 @@ def buscarProducto(lst_codigos, lst_stock):
             indice = lst_codigos.index(codigo)
 
             print("Stock disponible:", lst_stock[indice])
-
-            if lst_stock[indice] < 5:
-                print("Stock por debajo del minimo")
 
         else:
             print("Producto no encontrado")
@@ -110,6 +115,7 @@ def modificarStock(lst_codigos, lst_stock):
 
     while codigo != -1:
 
+        #si el codigo existe, se obtiene el indice del producto a modificar, se pide la nueva cantidad y se actualiza el stock en la lista correspondiente
         if existecodigo(lst_codigos, codigo):
 
             indice = lst_codigos.index(codigo)
@@ -123,16 +129,24 @@ def modificarStock(lst_codigos, lst_stock):
         else:
             print("Producto no encontrado")
 
+        
+        #se pide el codigo nuevamente para seguir modificando productos, o finalizar el proceso ingresando -1
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): ")) 
 
 
 
-def eliminarProducto(lst_codigos, lst_stock):
+def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
 
     codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
+    #comprueba que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
+    while codigo <= 0 and codigo != -1:
+        codigo = int(input("ERROR. Ingrese un codigo valido: "))
+
+    #mientras el codigo sea diferente de -1, se va 
     while codigo != -1:
 
+        #si el codigo existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el codigo, el stock y nombre de las listas correspondientes
         if existecodigo(lst_codigos, codigo):
 
             indice = -1
@@ -143,10 +157,25 @@ def eliminarProducto(lst_codigos, lst_stock):
 
             lst_codigos.pop(indice)
             lst_stock.pop(indice)
+            lst_nombres.pop(indice)
 
             print("Producto eliminado correctamente")
 
         else:
             print("Producto no encontrado")
 
+        #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+
+
+def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
+    for i in range(len(lst_stock)-1):
+        for j in range(i+1, len(lst_stock)):
+            if lst_stock[i] < lst_stock[j]:
+                # Intercambiar stock
+                lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
+                # Intercambiar codigos
+                lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
+                # Intercambiar nombres
+                lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+
