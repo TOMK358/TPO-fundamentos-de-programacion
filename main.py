@@ -32,10 +32,16 @@ def main():
             case 3:
                 funciones.eliminarProducto(
                     lst_codigos,
-                    lst_stock
+                    lst_stock,
+                    lst_nombre
                 )
 
             case 4:
+                funciones.ordenarProductos_porstock(
+                    lst_codigos,
+                    lst_nombre,
+                    lst_stock
+                )
                 funciones.mostrarProductos(
                     lst_codigos,
                     lst_nombre,

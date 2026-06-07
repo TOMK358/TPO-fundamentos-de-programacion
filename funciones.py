@@ -73,6 +73,16 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
         while codigo <= 0 and codigo != -1:
             codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
+def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
+    for i in range(len(lst_stock)-1):
+        for j in range(i+1, len(lst_stock)):
+            if lst_stock[i] < lst_stock[j]:
+                # Intercambiar stock
+                lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
+                # Intercambiar codigos
+                lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
+                # Intercambiar nombres
+                lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
 
 def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
 
@@ -81,10 +91,6 @@ def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
-        
-        #se tiene que haccer las 3 juntas por los parametros que recibe la funcion, ya que ordena las 3 de una sola vez,
-        # y si se ordena solo una, las otras quedan desordenadas y no se pueden mostrar correctamente
-        lst_codigos, lst_nombres, lst_stock = ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock)
         print("codigo  nombre  stock")
         for i in range(len(lst_codigos)):
             print(
@@ -172,14 +178,5 @@ def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
 
-def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
-    for i in range(len(lst_stock)-1):
-        for j in range(i+1, len(lst_stock)):
-            if lst_stock[i] < lst_stock[j]:
-                # Intercambiar stock
-                lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
-                # Intercambiar codigos
-                lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
-                # Intercambiar nombres
-                lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+
 
