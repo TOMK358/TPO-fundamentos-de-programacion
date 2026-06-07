@@ -81,6 +81,10 @@ def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
+        
+        #se tiene que haccer las 3 juntas por los parametros que recibe la funcion, ya que ordena las 3 de una sola vez,
+        # y si se ordena solo una, las otras quedan desordenadas y no se pueden mostrar correctamente
+        lst_codigos, lst_nombres, lst_stock = ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock)
         print("codigo  nombre  stock")
         for i in range(len(lst_codigos)):
             print(
