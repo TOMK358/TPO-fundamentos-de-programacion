@@ -74,6 +74,7 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
             codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
 def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
+#nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
     for i in range(len(lst_stock)-1):
         for j in range(i+1, len(lst_stock)):
             if lst_stock[i] < lst_stock[j]:
@@ -120,7 +121,8 @@ def buscarProducto(lst_codigos, lst_stock):
 
 
 def modificarStock(lst_codigos, lst_stock):
-
+#aca nos esta faltando el modificar no solo el stock, sino que el tp nos pide modificar cualquier atributo del producto 
+#podriamos plantear un sub menu que le deje elegir si quiere modificar nombre,precio,stock, marca del fabricante e incluso codigo del producto ( con la validacion de que no se repita)
     codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
     while codigo != -1:
