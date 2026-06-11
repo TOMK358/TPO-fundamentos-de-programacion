@@ -9,13 +9,6 @@ def main():
     lst_precios = []
     lst_marcas = []
 
-    lst_codigos = ["MON001","TEC005","SIL073","AUR123"]    
-    lst_Descripcion = ["Monitor Samsung 24 pulgadas","Teclado Logitech K120","Silla Gamer SILVERSTONE SGC500","Auriculares Gamer HyperX Cloud Stinger"]
-    lst_stock = [5,20,77,5]
-    lst_categorias = ["Monitores","Perifericos","Sillas Gamer","Auriculares"]
-    lst_precios = [50,20,150,70]
-    lst_marcas = ["Samsung","Logitech","Silverstone","HyperX"]
-
     opcion = 0
 
     while opcion != 8:
