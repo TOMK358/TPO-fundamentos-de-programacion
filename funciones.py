@@ -31,7 +31,6 @@ def ingresarPositivo(msg):
 
     return num
 
-
 def existecodigo(lst_codigos, codigo):
 
     #recorre la lista de codigos y si encuentra el codigo ingresado, devuelve True, sino devuelve False
@@ -41,16 +40,16 @@ def existecodigo(lst_codigos, codigo):
 
     return False
 
-def existenombre (lst_nombres, nombre):
+def existenombre (lst_descripcion, descripcion):
 
-    #recorre la lista de nombres y si encuentra el nombre ingresado, devuelve True, sino devuelve False
-    for i in range(len(lst_nombres)):
-        if lst_nombres[i] == nombre:
+    #recorre la lista de descripciones y si encuentra la descripcion ingresada, devuelve True, sino devuelve False
+    for i in range(len(lst_descripcion)):
+        if lst_descripcion[i] == descripcion:
             return True
 
     return False
 
-def altaProductos(lst_codigos, lst_nombres, lst_stock):
+def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
     codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
 
@@ -61,16 +60,25 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
     while codigo != -1:
 
         nombre = input("Nombre del producto: ")
-
+        print("\n")
+        categoria = input("Categoria del producto: ")
+        print("\n")
+        precio = float(input("Precio del producto: "))
+        print("\n")
         cantidad = random.randint(1, 50)
+        print("\n")
+        marca = input("Marca del producto: ")
 
         #si el codigo ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
         if existecodigo(lst_codigos, codigo):
             print("El codigo ya existe")
         else:
             lst_codigos.append(codigo)
-            lst_nombres.append(nombre)
+            lst_descripcion.append(nombre)
+            lst_categorias.append(categoria)
+            lst_precios.append(precio)
             lst_stock.append(cantidad)
+            lst_marcas.append(marca)
 
             print("Producto agregado correctamente")
 
@@ -81,10 +89,7 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
         while codigo <= 0 and codigo != -1:
             codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
-
-
-
-def ordenarProductos(lst_codigos, lst_nombres, lst_stock):
+def ordenarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
     for i in range(len(lst_stock)-1):
         for j in range(i+1, len(lst_stock)):
@@ -93,38 +98,48 @@ def ordenarProductos(lst_codigos, lst_nombres, lst_stock):
                 lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
                 # Intercambiar codigos
                 lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
-                # Intercambiar nombres
-                lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+                # Intercambiar descripciones
+                lst_descripcion[i], lst_descripcion[j] = lst_descripcion[j], lst_descripcion[i]
+                # Intercambiar categorias
+                lst_categorias[i], lst_categorias[j] = lst_categorias[j], lst_categorias[i]
+                # Intercambiar precios
+                lst_precios[i], lst_precios[j] = lst_precios[j], lst_precios[i]
+                # Intercambiar marcas
+                lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
+
             if lst_stock[i] == lst_stock[j]:
                 # si el stock es igual, se ordena por nombre alfabeticamente
-                lst_nombres[i] = lst_nombres[i].lower()  # convertimos a minuscula para evitar problemas con mayusculas
-                lst_nombres[j] = lst_nombres[j].lower()
-                if lst_nombres[i] > lst_nombres[j]:
+                lst_descripcion[i] = lst_descripcion[i].lower()  # convertimos a minuscula para evitar problemas con mayusculas
+                lst_descripcion[j] = lst_descripcion[j].lower()
+                if lst_descripcion[i] > lst_descripcion[j]:
                     # Intercambiar stock
                     lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
                     # Intercambiar codigos
                     lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
-                    # Intercambiar nombres
-                    lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+                    # Intercambiar descripciones
+                    lst_descripcion[i], lst_descripcion[j] = lst_descripcion[j], lst_descripcion[i]
+                    # Intercambiar categorias
+                    lst_categorias[i], lst_categorias[j] = lst_categorias[j], lst_categorias[i]
+                    # Intercambiar precios
+                    lst_precios[i], lst_precios[j] = lst_precios[j], lst_precios[i]
+                    # Intercambiar marcas
+                    lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
 
-
-
-def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
+def mostrarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
     print("\n--- LISTA DE PRODUCTOS ---")
 
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
-        print("codigo  nombre  stock")
+        print("Codigo   Descripcion     Categoria   Precios     Stock    Marca")
         for i in range(len(lst_codigos)):
             print(
-                lst_codigos[i],   lst_nombres[i],   lst_stock[i]
+                lst_codigos[i],   lst_descripcion[i],   lst_categorias[i],   lst_precios[i],   lst_stock[i],   lst_marcas[i]
             )
 
 
-
-def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
+def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
     codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
@@ -146,7 +161,10 @@ def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
 
             lst_codigos.pop(indice)
             lst_stock.pop(indice)
-            lst_nombres.pop(indice)
+            lst_descripcion.pop(indice)
+            lst_categorias.pop(indice)
+            lst_precios.pop(indice)
+            lst_marcas.pop(indice)
 
             print("Producto eliminado correctamente")
 
@@ -156,10 +174,7 @@ def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
         #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
-
-
-
-def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_precios, lst_marcas):
+def modificarproducto (lst_codigos, lst_stock, lst_descripcion, lst_categorias, lst_precios, lst_marcas):
 
     nombre = input("Ingrese el nombre del producto : ")
 
@@ -171,9 +186,9 @@ def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_
         #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
         #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
 
-        if existenombre(lst_nombres, nombre):
+        if existenombre(lst_descripcion, nombre):
 
-            indice = lst_nombres.index(nombre)
+            indice = lst_descripcion.index(nombre)
 
             print("1. Modificar descripcion del producto")
             print("2. Modificar precio")
@@ -191,7 +206,7 @@ def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_
 
             if opcion == 1:
                 nueva_descripcion = input("Ingrese la nueva descripcion: ")
-                lst_nombres[indice] = nueva_descripcion
+                lst_descripcion[indice] = nueva_descripcion
                 print("Descripcion modificada correctamente")
 
             elif opcion == 2:
