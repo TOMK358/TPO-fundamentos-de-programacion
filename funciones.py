@@ -84,7 +84,7 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
 
 
 
-def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
+def ordenarProductos(lst_codigos, lst_nombres, lst_stock):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
     for i in range(len(lst_stock)-1):
         for j in range(i+1, len(lst_stock)):
@@ -95,6 +95,17 @@ def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
                 lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
                 # Intercambiar nombres
                 lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+            if lst_stock[i] == lst_stock[j]:
+                # si el stock es igual, se ordena por nombre alfabeticamente
+                lst_nombres[i] = lst_nombres[i].lower()  # convertimos a minuscula para evitar problemas con mayusculas
+                lst_nombres[j] = lst_nombres[j].lower()
+                if lst_nombres[i] > lst_nombres[j]:
+                    # Intercambiar stock
+                    lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
+                    # Intercambiar codigos
+                    lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
+                    # Intercambiar nombres
+                    lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
 
 
 
