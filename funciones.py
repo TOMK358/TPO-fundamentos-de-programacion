@@ -192,9 +192,15 @@ def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
 
 def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_precios, lst_marcas):
 
-    codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+    nombre = input("Ingrese el nombre del producto : ")
 
-    while codigo != -1:
+    seguir = True
+
+    while seguir:
+
+        #si el nombre existe, se obtiene el indice del producto a modificar
+        #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
+        #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
 
         if existenombre(lst_nombres, nombre):
 
@@ -256,4 +262,9 @@ def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_
         else:
             print("Producto no encontrado")
 
-        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+        seguir = input("Desea modificar otro producto? (s/n): ")
+        if seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI":
+            seguir = False
+
+        else:
+            nombre = input("Ingrese el nombre del producto : ")
