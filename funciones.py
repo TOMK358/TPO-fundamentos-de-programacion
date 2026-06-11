@@ -185,6 +185,7 @@ def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, l
         #si el nombre existe, se obtiene el indice del producto a modificar
         #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
         #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
+        #muestra del push de github
 
         if existeproducto(lst_descripcion, descripcion):
 
