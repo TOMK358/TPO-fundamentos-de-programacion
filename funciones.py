@@ -40,7 +40,7 @@ def existecodigo(lst_codigos, codigo):
 
     return False
 
-def existenombre (lst_descripcion, descripcion):
+def existeproducto (lst_descripcion, descripcion):
 
     #recorre la lista de descripciones y si encuentra la descripcion ingresada, devuelve True, sino devuelve False
     for i in range(len(lst_descripcion)):
@@ -176,9 +176,9 @@ def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
         #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
         codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
 
-def modificarproducto (lst_codigos, lst_stock, lst_descripcion, lst_categorias, lst_precios, lst_marcas):
+def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
-    nombre = input("Ingrese el nombre del producto : ")
+    descripcion = input("Ingrese la descripcion del producto : ")
 
     seguir = True
 
@@ -188,9 +188,9 @@ def modificarproducto (lst_codigos, lst_stock, lst_descripcion, lst_categorias, 
         #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
         #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
 
-        if existenombre(lst_descripcion, nombre):
+        if existeproducto(lst_descripcion, descripcion):
 
-            indice = lst_descripcion.index(nombre)
+            indice = lst_descripcion.index(descripcion)
 
             print("1. Modificar descripcion del producto")
             print("2. Modificar precio")
