@@ -50,7 +50,7 @@ def main():
                 )
 
             case 4:
-                funciones.ordenarProductos_porstock(
+                funciones.ordenarProductos(
                     lst_codigos,
                     lst_Descripcion,
                     lst_categorias,
