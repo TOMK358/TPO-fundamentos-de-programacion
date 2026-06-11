@@ -41,6 +41,14 @@ def existecodigo(lst_codigos, codigo):
 
     return False
 
+def existenombre (lst_nombres, nombre):
+
+    #recorre la lista de nombres y si encuentra el nombre ingresado, devuelve True, sino devuelve False
+    for i in range(len(lst_nombres)):
+        if lst_nombres[i] == nombre:
+            return True
+
+    return False
 
 def altaProductos(lst_codigos, lst_nombres, lst_stock):
 
@@ -120,7 +128,7 @@ def buscarProducto(lst_codigos, lst_stock):
 
 
 
-def modificarStock(lst_codigos, lst_stock):
+def modificarStock(lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_precios, lst_marcas):
 #aca nos esta faltando el modificar no solo el stock, sino que el tp nos pide modificar cualquier atributo del producto 
 #podriamos plantear un sub menu que le deje elegir si quiere modificar nombre,precio,stock, marca del fabricante e incluso codigo del producto ( con la validacion de que no se repita)
     codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
@@ -130,7 +138,7 @@ def modificarStock(lst_codigos, lst_stock):
         #si el codigo existe, se obtiene el indice del producto a modificar, se pide la nueva cantidad y se actualiza el stock en la lista correspondiente
         if existecodigo(lst_codigos, codigo):
 
-            indice = lst_codigos.index(codigo)
+            indice = lst_codigos.index(codigo)            
 
             nueva_cantidad = ingresarPositivo("Ingrese la nueva cantidad: ")
 
@@ -182,3 +190,70 @@ def eliminarProducto(lst_codigos, lst_stock, lst_nombres):
 
 
 
+def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_precios, lst_marcas):
+
+    codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+
+    while codigo != -1:
+
+        if existenombre(lst_nombres, nombre):
+
+            indice = lst_nombres.index(nombre)
+
+            print("1. Modificar nombre")
+            print("2. Modificar precio")
+            print("3. Modificar stock")
+            print("4. Modificar marca del fabricante")
+            print("5. Modificar categoria")
+            print("6. Modificar codigo")
+            print("8. Salir")
+
+            opcion = int(input("Seleccione una opcion: "))
+
+            while opcion < 1 or opcion > 6 or opcion != 8:
+                print("Opcion no valida")
+                opcion = int(input("Seleccione una opcion: "))
+
+            if opcion == 1:
+                nuevo_nombre = input("Ingrese el nuevo nombre: ")
+                lst_nombres[indice] = nuevo_nombre
+                print("Nombre modificado correctamente")
+
+            elif opcion == 2:
+                nuevo_precio = float(input("Ingrese el nuevo precio: "))
+                lst_precios[indice] = nuevo_precio
+                print("Precio modificado correctamente")
+
+            elif opcion == 3:
+                nueva_cantidad = ingresarPositivo("Ingrese la nueva cantidad: ")
+                lst_stock[indice] = nueva_cantidad
+                print("Stock modificado correctamente")
+
+            elif opcion == 4:
+                nueva_marca = input("Ingrese la nueva marca del fabricante: ")
+                lst_marcas[indice] = nueva_marca
+                print("Marca del fabricante modificada correctamente")
+
+            elif opcion == 5:
+                nueva_categoria = input("Ingrese la nueva categoria: ")
+                lst_categorias[indice] = nueva_categoria
+                print("Categoria modificada correctamente")
+            
+            elif opcion == 6:
+                nuevo_codigo = int(input("Ingrese el nuevo codigo: "))
+
+                while nuevo_codigo <= 0:
+                    print("ERROR. Ingrese un codigo valido: ")
+                    nuevo_codigo = int(input("Ingrese el nuevo codigo: "))
+
+                if existecodigo(lst_codigos, nuevo_codigo):
+                    print("El codigo ya existe")
+                else:
+                    lst_codigos[indice] = nuevo_codigo
+                    print("Codigo modificado correctamente")
+
+
+        else:
+            print("Producto no encontrado")
+
+        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
