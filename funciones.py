@@ -109,10 +109,8 @@ def ordenarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
 
             if lst_stock[i] == lst_stock[j]:
                 # si el stock es igual, se ordena por nombre alfabeticamente
-                aux1_descripcion = lst_descripcion[i]
-                aux2_descripcion = lst_descripcion[j]
-                aux1_descripcion = aux1_descripcion.lower()  # convertimos a minuscula para evitar problemas con mayusculas
-                aux2_descripcion = aux2_descripcion.lower()
+                aux1_descripcion = lst_descripcion[i].lower()  # convertimos a minuscula para evitar problemas con mayusculas
+                aux2_descripcion = lst_descripcion[j].lower()  
                 if aux1_descripcion > aux2_descripcion:
                     # Intercambiar stock
                     lst_stock[i], lst_stock[j] = lst_stock[j], lst_stock[i]
