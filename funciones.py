@@ -81,6 +81,9 @@ def altaProductos(lst_codigos, lst_nombres, lst_stock):
         while codigo <= 0 and codigo != -1:
             codigo = int(input("ERROR. Ingrese un codigo valido: "))
 
+
+
+
 def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
     for i in range(len(lst_stock)-1):
@@ -92,6 +95,8 @@ def ordenarProductos_porstock(lst_codigos, lst_nombres, lst_stock):
                 lst_codigos[i], lst_codigos[j] = lst_codigos[j], lst_codigos[i]
                 # Intercambiar nombres
                 lst_nombres[i], lst_nombres[j] = lst_nombres[j], lst_nombres[i]
+
+
 
 def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
 
@@ -105,53 +110,6 @@ def mostrarProductos(lst_codigos, lst_nombres, lst_stock):
             print(
                 lst_codigos[i],   lst_nombres[i],   lst_stock[i]
             )
-
-
-#todavia no se usa pero se usara despues (con algunos cambios segun el uso que le demos)
-def buscarProducto(lst_codigos, lst_stock):
-
-    codigo = int(input("Ingrese el codigo a buscar (-1 para finalizar): "))
-
-    while codigo != -1:
-
-        if existecodigo(lst_codigos, codigo):
-
-            indice = lst_codigos.index(codigo)
-
-            print("Stock disponible:", lst_stock[indice])
-
-        else:
-            print("Producto no encontrado")
-
-        codigo = int(input("Ingrese el codigo a buscar (-1 para finalizar): "))
-
-
-
-
-def modificarStock(lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_precios, lst_marcas):
-#aca nos esta faltando el modificar no solo el stock, sino que el tp nos pide modificar cualquier atributo del producto 
-#podriamos plantear un sub menu que le deje elegir si quiere modificar nombre,precio,stock, marca del fabricante e incluso codigo del producto ( con la validacion de que no se repita)
-    codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
-
-    while codigo != -1:
-
-        #si el codigo existe, se obtiene el indice del producto a modificar, se pide la nueva cantidad y se actualiza el stock en la lista correspondiente
-        if existecodigo(lst_codigos, codigo):
-
-            indice = lst_codigos.index(codigo)            
-
-            nueva_cantidad = ingresarPositivo("Ingrese la nueva cantidad: ")
-
-            lst_stock[indice] = nueva_cantidad
-
-            print("Stock modificado correctamente")
-
-        else:
-            print("Producto no encontrado")
-
-        
-        #se pide el codigo nuevamente para seguir modificando productos, o finalizar el proceso ingresando -1
-        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): ")) 
 
 
 
@@ -206,7 +164,7 @@ def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_
 
             indice = lst_nombres.index(nombre)
 
-            print("1. Modificar nombre")
+            print("1. Modificar descripcion del producto")
             print("2. Modificar precio")
             print("3. Modificar stock")
             print("4. Modificar marca del fabricante")
@@ -216,14 +174,14 @@ def modificarproducto (lst_codigos, lst_stock, lst_nombres, lst_categorias, lst_
 
             opcion = int(input("Seleccione una opcion: "))
 
-            while opcion < 1 or opcion > 6 or opcion != 8:
+            while (opcion < 1 or opcion > 6) and opcion != 8:
                 print("Opcion no valida")
                 opcion = int(input("Seleccione una opcion: "))
 
             if opcion == 1:
-                nuevo_nombre = input("Ingrese el nuevo nombre: ")
-                lst_nombres[indice] = nuevo_nombre
-                print("Nombre modificado correctamente")
+                nueva_descripcion = input("Ingrese la nueva descripcion: ")
+                lst_nombres[indice] = nueva_descripcion
+                print("Descripcion modificada correctamente")
 
             elif opcion == 2:
                 nuevo_precio = float(input("Ingrese el nuevo precio: "))

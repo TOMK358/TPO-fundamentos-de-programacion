@@ -5,6 +5,9 @@ def main():
     lst_codigos = []    
     lst_nombre = []
     lst_stock = []
+    lst_categorias = []
+    lst_precios = []
+    lst_marcas = []
 
     opcion = 0
 
@@ -24,9 +27,13 @@ def main():
                 )
 
             case 2:
-                funciones.modificarStock(
+                funciones.modificarproducto(
                     lst_codigos,
-                    lst_stock
+                    lst_stock,
+                    lst_nombre,
+                    lst_categorias,
+                    lst_precios,
+                    lst_marcas
                 )
 
             case 3:
