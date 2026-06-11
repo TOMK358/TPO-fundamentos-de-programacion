@@ -5,7 +5,7 @@ import random
 def mostrarMenu():
     print("\n--- MENU ---")
     print("1. Alta de productos")
-    print("2. Modificar stock")
+    print("2. Modificar Producto")
     print("3. Eliminar producto")
     print("4. Mostrar productos")
     print("8. Salir")
@@ -253,4 +253,6 @@ def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, l
             seguir = False
 
         else:
-            nombre = input("Ingrese el nombre del producto : ")
+            descripcion = input("Ingrese la descripcion del producto : ")
+
+    return lst_codigos, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas
