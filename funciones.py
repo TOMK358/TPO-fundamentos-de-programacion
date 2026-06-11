@@ -51,13 +51,13 @@ def existeproducto (lst_descripcion, descripcion):
 
 def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
-    codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
+    codigo = input("Ingrese un codigo (-1 para finalizar): ")
 
     #comprueba que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
-    while codigo <= 0 and codigo != -1:
-        codigo = int(input("ERROR. Ingrese un codigo valido: "))
+    while "-" in codigo and codigo != "-1":
+        codigo = input("ERROR. Ingrese un codigo valido: ")
 
-    while codigo != -1:
+    while codigo != "-1":
 
         nombre = input("Nombre del producto: ")
         print("\n")
@@ -83,11 +83,11 @@ def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst
             print("Producto agregado correctamente")
 
         #se pide el codigo nuevamente para seguir agregando productos, o finalizar el proceso ingresando -1
-        codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
+        codigo = input("Ingrese un codigo (-1 para finalizar): ")
 
         #realiza la misma comprobacion que al inicio para asegurarse de que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
-        while codigo <= 0 and codigo != -1:
-            codigo = int(input("ERROR. Ingrese un codigo valido: "))
+        while "-" in codigo and codigo != "-1":
+            codigo = input("ERROR. Ingrese un codigo valido: ")
 
 def ordenarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
@@ -147,14 +147,14 @@ def mostrarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
 
 def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
-    codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+    codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
 
     #comprueba que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
-    while codigo <= 0 and codigo != -1:
-        codigo = int(input("ERROR. Ingrese un codigo valido: "))
+    while "-" in codigo and codigo != "-1":
+        codigo = input("ERROR. Ingrese un codigo valido: ")
 
     #mientras el codigo sea diferente de -1, se va 
-    while codigo != -1:
+    while codigo != "-1":
 
         #si el codigo existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el codigo, el stock y nombre de las listas correspondientes
         if existecodigo(lst_codigos, codigo):
@@ -178,7 +178,10 @@ def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
             print("Producto no encontrado")
 
         #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
-        codigo = int(input("Ingrese el codigo del producto (-1 para finalizar): "))
+        codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
+        while "-" in codigo and codigo != "-1":
+            codigo = input("ERROR. Ingrese un codigo valido: ")
+
 
 def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
@@ -236,11 +239,13 @@ def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, l
                 print("Categoria modificada correctamente")
             
             elif opcion == 6:
-                nuevo_codigo = int(input("Ingrese el nuevo codigo: "))
+                nuevo_codigo = input("Ingrese el nuevo codigo: ")
 
-                while nuevo_codigo <= 0:
+                while "-" in nuevo_codigo and nuevo_codigo != "-1":
                     print("ERROR. Ingrese un codigo valido: ")
-                    nuevo_codigo = int(input("Ingrese el nuevo codigo: "))
+                    nuevo_codigo = input("Ingrese el nuevo codigo: ")
+
+                    
 
                 if existecodigo(lst_codigos, nuevo_codigo):
                     print("El codigo ya existe")
@@ -252,8 +257,9 @@ def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, l
         else:
             print("Producto no encontrado")
 
-        seguir = input("Desea modificar otro producto? (s/n): ")
-        if seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI":
+        continuar = input("Desea modificar otro producto? (s/n): ")
+        continuar = continuar.lower()
+        if continuar != "s" and continuar != "si":
             seguir = False
 
         else:
