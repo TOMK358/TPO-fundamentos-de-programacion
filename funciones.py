@@ -132,12 +132,18 @@ def mostrarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
-        print("Codigo   Descripcion     Categoria   Precios     Stock    Marca")
+
+        print(f"{'Codigo':<10}{'Descripcion':<40}{'Categoria':<20}{'Precio':<10}{'Stock':<10}{'Marca':<20}")
+
         for i in range(len(lst_codigos)):
             print(
-                lst_codigos[i],   lst_descripcion[i],   lst_categorias[i],   lst_precios[i],   lst_stock[i],   lst_marcas[i]
+                f"{lst_codigos[i]:<10}"
+                f"{lst_descripcion[i]:<40}"
+                f"{lst_categorias[i]:<20}"
+                f"{lst_precios[i]:<10}"
+                f"{lst_stock[i]:<10}"
+                f"{lst_marcas[i]:<20}"
             )
-
 
 def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
