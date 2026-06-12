@@ -156,22 +156,37 @@ def mostrarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
 
 def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
-    codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
-
-    while codigo != "-1": #mientras el codigo sea diferente de -1, se va 
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
-
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
+    codigo = input("Ingrese un identificador (-1 para finalizar): ")
+    #validar el identificador de los productos que se ingresan por consola
+    while codigo != "-1":
+        if len(codigo) < 3 or len(codigo) > 10:
+            print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
+            codigo = input("Ingrese un identificador, -1 para salir: ")
+        
+        if codigo == " ":
+            print("Ingreso una identificador vacio, no sirve!!!")
+            codigo = input("Ingrese un identificador, -1 para salir: ")
+        
+        seguirValidando = True
+        
+        while seguirValidando:
+            codigoNoValida = False
+            codigoValida = False
+            for i in range (len(codigo)):
+                if codigo[i] == "_"  or (("A"<=codigo[i] <="Z") or ("a"<=codigo[i] <="z")) or ("0"<=codigo[i] <="9"):
+                    if codigoNoValida != True:
+                        codigoValida = True
                 else:
-                    aux_validar_codigo = True
+                    codigoNoValida = True
+                    codigoValida = False
+                
+            if codigoNoValida:
+                print ("Identificador invalido, vuelva a ingresarlo!!")
+                codigo = input("Ingrese un identificador, -1 para salir: ")
+                            
+            if codigoValida:
+                print("Ingreso una codigo valida!")
+                seguirValidando = False
 
         #si el codigo existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el codigo, el stock y nombre de las listas correspondientes
         if existecodigo(lst_codigos, codigo):
@@ -195,21 +210,8 @@ def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
             print("Producto no encontrado")
 
         #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
-        codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
-        
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
+        codigo = input("Ingrese una codigo, -1 para salir: ")
 
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
-                else:
-                    aux_validar_codigo = True
 
 def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
@@ -270,20 +272,36 @@ def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, l
                 nuevo_codigo = input("Ingrese el nuevo codigo: ")
 
                 while nuevo_codigo != "-1":
-                    while len(nuevo_codigo) < 4 or len(nuevo_codigo) > 10 or nuevo_codigo == "":
-                        nuevo_codigo = input("ERROR. Ingrese un codigo valido: ")
-
-                    aux_validar_codigo = False
-                    while aux_validar_codigo == False:
-                        for i in nuevo_codigo:
-                            alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                            numeros = "0" <= i <= "9"
-                            especiales = i == "_"
-                            if not (alfabeto or numeros or especiales):
-                                nuevo_codigo = input("ERROR. Ingrese un codigo valido: ")
-                            else:
-                                aux_validar_codigo = True
+                    if len(nuevo_codigo) < 3 or len(nuevo_codigo) > 10:
+                        print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
+                        nuevo_codigo = input("Ingrese un identificador, -1 para salir: ")
                     
+                    if nuevo_codigo == " ":
+                        print("Ingreso una identificador vacio, no sirve!!!")
+                        nuevo_codigo = input("Ingrese un identificador, -1 para salir: ")
+                    
+                    seguirValidando = True
+                    
+                    while seguirValidando:
+                        nuevo_codigoNoValida = False
+                        nuevo_codigoValida = False
+                        for i in range (len(nuevo_codigo)):
+                            if nuevo_codigo[i] == "_"  or (("A"<=nuevo_codigo[i] <="Z") or ("a"<=nuevo_codigo[i] <="z")) or ("0"<=nuevo_codigo[i] <="9"):
+                                if nuevo_codigoNoValida != True:
+                                    nuevo_codigoValida = True
+                            else:
+                                nuevo_codigoNoValida = True
+                                nuevo_codigoValida = False
+                            
+                        if nuevo_codigoNoValida:
+                            print ("Identificador invalido, vuelva a ingresarlo!!")
+                            nuevo_codigo = input("Ingrese un identificador, -1 para salir: ")
+                                        
+                        if nuevo_codigoValida:
+                            print("Ingreso una nuevo_codigo valida!")
+                            seguirValidando = False
+                    
+                        nuevo_codigo = input("Ingrese el nuevo codigo: ")                    
 
                 if existecodigo(lst_codigos, nuevo_codigo):
                     print("El codigo ya existe")
