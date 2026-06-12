@@ -51,13 +51,23 @@ def existeproducto (lst_descripcion, descripcion):
 
 def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
-    codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
+    codigo = input("Ingrese un codigo (-1 para finalizar): ")
+    
+    while codigo != "-1":
+        #compruebo los caracteres especiales ingresados en la variable.
+        for i in range(len(codigo)):
+            if codigo[i] == "!" or codigo[i] == "@" or codigo[i] == "#" or codigo[i] == "$" or codigo[i] == "%" or codigo[i] == "^" or codigo[i] == "&" or codigo[i] == "*" or codigo[i] == "(" or codigo[i] == ")" or codigo[i] == "+" or codigo[i] == "=":
+                print("ERROR. Ingrese un codigo valido: ")
+                codigo = input("Ingrese un codigo (-1 para finalizar): ")
 
-    #comprueba que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
-    while codigo <= 0 and codigo != -1:
-        codigo = int(input("ERROR. Ingrese un codigo valido: "))
-
-    while codigo != -1:
+        alta_aux = False
+        while alta_aux == False:
+            #comprueba que el codigo ingresado no este vacio y no sea -1 para finalizar, si no lo es, pide nuevamente el codigo
+            if codigo == "" or len(codigo) > 10 or len(codigo) < 4:
+                print("ERROR. Ingrese un codigo valido: ")
+                codigo = input("Ingrese un codigo (-1 para finalizar): ")
+            else:
+                alta_aux = True
 
         nombre = input("Nombre del producto: ")
         print("\n")
@@ -83,11 +93,7 @@ def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst
             print("Producto agregado correctamente")
 
         #se pide el codigo nuevamente para seguir agregando productos, o finalizar el proceso ingresando -1
-        codigo = int(input("Ingrese un codigo (-1 para finalizar): "))
-
-        #realiza la misma comprobacion que al inicio para asegurarse de que el codigo ingresado sea positivo o -1 para finalizar, si no lo es, pide nuevamente el codigo
-        while codigo <= 0 and codigo != -1:
-            codigo = int(input("ERROR. Ingrese un codigo valido: "))
+        codigo = input("Ingrese un codigo (-1 para finalizar): ")
 
 def ordenarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
