@@ -138,6 +138,8 @@ def mostrarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
     if len(lst_codigos) == 0:
         print("No hay productos cargados")
     else:
+        'La clave es que el número después de < debe ser mayor que la longitud máxima de los datos '
+        'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
 
         print(f"{'Codigo':<10}{'Descripcion':<40}{'Categoria':<20}{'Precio':<10}{'Stock':<10}{'Marca':<20}")
 
