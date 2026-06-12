@@ -40,75 +40,62 @@ def existecodigo(lst_codigos, codigo):
 
     return False
 
-def existeproducto (lst_descripcion, descripcion):
-
-    #recorre la lista de descripciones y si encuentra la descripcion ingresada, devuelve True, sino devuelve False
-    for i in range(len(lst_descripcion)):
-        if lst_descripcion[i] == descripcion:
-            return True
-
-    return False
-
 def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
-    codigo = input("Ingrese un codigo (-1 para finalizar): ")
-    
+    codigo = input("Ingrese un identificador (-1 para finalizar): ")
+    #validar el identificador de los productos que se ingresan por consola
     while codigo != "-1":
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
-
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
-                else:
-                    aux_validar_codigo = True
-
-        nombre = input("Nombre del producto: ")
-        print("\n")
-        categoria = input("Categoria del producto: ")
-        print("\n")
-        precio = float(input("Precio del producto: "))
-        print("\n")
-        cantidad = random.randint(1, 50)
-        print("\n")
-        marca = input("Marca del producto: ")
-
-        #si el codigo ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
-        if existecodigo(lst_codigos, codigo):
-            print("El codigo ya existe")
-        else:
-            lst_codigos.append(codigo)
-            lst_descripcion.append(nombre)
-            lst_categorias.append(categoria)
-            lst_precios.append(precio)
-            lst_stock.append(cantidad)
-            lst_marcas.append(marca)
-
-            print("Producto agregado correctamente")
-
-        #se pide el codigo nuevamente para seguir agregando productos, o finalizar el proceso ingresando -1
-        codigo = input("Ingrese un codigo (-1 para finalizar): ")
+        if len(codigo) < 3 or len(codigo) > 10:
+            print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
+            codigo = input("Ingrese un identificador, -1 para salir: ")
         
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
-
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
-                else:
-                    aux_validar_codigo = True
+        if codigo == " ":
+            print("Ingreso una identificador vacio, no sirve!!!")
+            codigo = input("Ingrese un identificador, -1 para salir: ")
         
+        seguirValidando = True
+        
+        while seguirValidando:
+            codigoNoValida = False
+            codigoValida = False
+            for i in range (len(codigo)):
+                if codigo[i] == "_"  or (("A"<=codigo[i] <="Z") or ("a"<=codigo[i] <="z")) or ("0"<=codigo[i] <="9"):
+                    if codigoNoValida != True:
+                        codigoValida = True
+                else:
+                    codigoNoValida = True
+                    codigoValida = False
+                
+            if codigoNoValida:
+                print ("Identificador invalido, vuelva a ingresarlo!!")
+                codigo = input("Ingrese un identificador, -1 para salir: ")
+                            
+            if codigoValida:
+                print("Ingreso una codigo valida!")
+                seguirValidando = False
+                nombre = input("\nNombre del producto: ")
+                categoria = input("\nCategoria del producto: ")
+                precio = float(input("\nPrecio del producto: "))
+                cantidad = random.randint(1, 50)
+                marca = input("\nMarca del producto: ")
 
+                #si el codigo ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
+                if existecodigo(lst_codigos, codigo):
+                    print("El codigo ya existe")
+                else:
+                    lst_codigos.append(codigo)
+                    lst_descripcion.append(nombre)
+                    lst_categorias.append(categoria)
+                    lst_precios.append(precio)
+                    lst_stock.append(cantidad)
+                    lst_marcas.append(marca)
+
+                    print("Producto agregado correctamente")
+    
+        codigo = input("Ingrese una codigo, -1 para salir: ")
+
+    return()
+        
 def ordenarProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 #nos falta el caso de que haya mas de un producto con la misma cantidad de stock, ordenarlos por alfabeticamente por la descripcion del producto
     for i in range(len(lst_stock)-1):
@@ -223,7 +210,6 @@ def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
                     codigo = input("ERROR. Ingrese un codigo valido: ")
                 else:
                     aux_validar_codigo = True
-
 
 def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
