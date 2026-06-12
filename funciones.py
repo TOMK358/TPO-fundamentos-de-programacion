@@ -40,6 +40,16 @@ def existecodigo(lst_codigos, codigo):
 
     return False
 
+
+def isempty (lst):
+
+    #comprueba si la lista esta vacia, si lo esta devuelve True, sino devuelve False
+    if len(lst) == 0:
+        return True
+    else:
+        return False
+
+
 def altaProductos(lst_codigos, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
     codigo = input("Ingrese un identificador (-1 para finalizar): ")
@@ -158,58 +168,34 @@ def eliminarProducto(lst_codigos, lst_descripcion, lst_categorias, lst_precios, 
 
     codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
 
-    while codigo != "-1": #mientras el codigo sea diferente de -1, se va 
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
-
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
-                else:
-                    aux_validar_codigo = True
-
-        #si el codigo existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el codigo, el stock y nombre de las listas correspondientes
-        if existecodigo(lst_codigos, codigo):
-
-            indice = -1
-
-            for i in range(len(lst_codigos)):
-                if lst_codigos[i] == codigo:
-                    indice = i
-
-            lst_codigos.pop(indice)
-            lst_stock.pop(indice)
-            lst_descripcion.pop(indice)
-            lst_categorias.pop(indice)
-            lst_precios.pop(indice)
-            lst_marcas.pop(indice)
-
-            print("Producto eliminado correctamente")
-
-        else:
-            print("Producto no encontrado")
-
-        #se pide el codigo nuevamente para seguir eliminando productos, o finalizar el proceso ingresando -1
-        codigo = input("Ingrese el codigo del producto (-1 para finalizar): ")
+    if len(codigo) < 3 or len(codigo) > 10:
+            print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
+            codigo = input("Ingrese un identificador, -1 para salir: ")
         
-        while len(codigo) < 4 or len(codigo) > 10 or codigo == "":
-            codigo = input("ERROR. Ingrese un codigo valido: ")
+            if codigo == " ":
+                print("Ingreso una identificador vacio, no sirve!!!")
+                codigo = input("Ingrese un identificador, -1 para salir: ")
+        
+        #si el codigo existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el codigo, el stock y nombre de las listas correspondientes
+            if existecodigo(lst_codigos, codigo):
 
-        aux_validar_codigo = False
-        while aux_validar_codigo == False:
-            for i in codigo:
-                alfabeto = ("a" <= i <= "z") or ("A" <= i <= "Z")
-                numeros = "0" <= i <= "9"
-                especiales = i == "_"
-                if not (alfabeto or numeros or especiales):
-                    codigo = input("ERROR. Ingrese un codigo valido: ")
-                else:
-                    aux_validar_codigo = True
+                indice = -1
+
+                for i in range(len(lst_codigos)):
+                    if lst_codigos[i] == codigo:
+                        indice = i
+
+                lst_codigos.pop(indice)
+                lst_stock.pop(indice)
+                lst_descripcion.pop(indice)
+                lst_categorias.pop(indice)
+                lst_precios.pop(indice)
+                lst_marcas.pop(indice)
+
+                print("Producto eliminado correctamente")
+
+            else:
+                print("Producto no encontrado")
 
 def modificarproducto (lst_codigos,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 

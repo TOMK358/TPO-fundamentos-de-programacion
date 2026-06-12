@@ -40,14 +40,17 @@ def main():
                 )
 
             case 3:
-                funciones.eliminarProducto(
-                    lst_codigos,
-                    lst_Descripcion,
-                    lst_categorias,
-                    lst_precios,
-                    lst_stock,
-                    lst_marcas
-                )
+                if not funciones.isempty(lst_codigos):    
+                    funciones.eliminarProducto(
+                        lst_codigos,
+                        lst_Descripcion,
+                        lst_categorias,
+                        lst_precios,
+                        lst_stock,
+                        lst_marcas
+                    )
+                else:
+                    print("no hay productos cargados")
 
             case 4:
                 funciones.ordenarProductos(
