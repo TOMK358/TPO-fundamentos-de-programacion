@@ -230,12 +230,12 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
         'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
         
 
-        print(f"{'Identificador':<15}{'Descripcion':<50}{'Categoria':<50}{'Precio':<10}{'Stock':<10}{'Marca':<30}")
+        print(f"{'Identificador':<15}{'Descripcion':<80}{'Categoria':<50}{'Precio':<10}{'Stock':<10}{'Marca':<30}")
 
         for i in range(len(lst_identificador)):
             print(
                 f"{lst_identificador[i]:<15}"
-                f"{lst_descripcion[i]:<50}"
+                f"{lst_descripcion[i]:<80}"
                 f"{lst_categorias[i]:<50}"
                 f"{lst_precios[i]:<10}"
                 f"{lst_stock[i]:<10}"
