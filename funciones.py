@@ -269,6 +269,8 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
             else:
                 print("Producto no encontrado")
 
+
+
 'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe, '
 'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion, '
 'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida'
