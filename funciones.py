@@ -142,11 +142,99 @@ def validacionMarca(marcaProd):
                 print("\nIngreso una marca no valida para el producto. Por favor volver a ingresar:")
                 marcaProd = input("\nMarca del producto: ")
         
-                
-        
-
     return(marcaProd)
 
+def longIdent(lst_identificador):
+    
+    IdentMasLargo = lst_identificador[0]
+    x = True
+    for i in lst_identificador:
+        if len(i) > 13:
+            if len(i) > len(IdentMasLargo):
+                IdentMasLargo = i
+                x = False
+        elif x:
+            IdentMasLargo = ("0"*13)
+    IdentMasLargo = len(IdentMasLargo) + 1
+    
+    return(IdentMasLargo)
+
+def longDescrip(lst_descripcion):
+    
+    DescripMasLargo = lst_descripcion[0]
+    x = True
+    for i in lst_descripcion:
+        if len(i) > 11:
+            if len(i) > len(DescripMasLargo):
+                DescripMasLargo = i
+                x = False
+        elif x:
+            DescripMasLargo = ('0'*11)
+    DescripMasLargo = len(DescripMasLargo) + 1
+    
+    return(DescripMasLargo)
+
+def longCateg(lst_categorias):
+    
+    CategMasLargo = lst_categorias[0]
+    x = True
+    for i in lst_categorias:
+        if len(i) > 9:
+            if len(i) > len(CategMasLargo):
+                CategMasLargo = i
+                x = False
+        elif x:
+            CategMasLargo = ('0' * 9)
+    CategMasLargo = len(CategMasLargo) + 1
+    
+    return(CategMasLargo)
+
+def longPrecios(lst_precios):
+    
+    PreciosMasLargo = str(lst_precios[0])
+    x = True
+    for i in lst_precios:
+        i_str = str(i)
+        if len(i_str) > 6:
+            if len(i_str) > len(PreciosMasLargo):
+                PreciosMasLargo = i_str
+                x = False
+        elif x:
+            PreciosMasLargo = ('0' * 6)
+    PreciosMasLargo = len(PreciosMasLargo) + 1
+    
+    return(PreciosMasLargo)
+
+def longStocks(lst_stock):
+    
+    StockMasLargo = str(lst_stock[0])
+    x = True
+    for i in lst_stock:
+        i_str = str(i)
+        if len(i_str) > 5:
+            if len(i_str) > len(StockMasLargo):
+                StockMasLargo = i
+                x = False
+        elif x:
+            StockMasLargo = ('0' * 5)
+    StockMasLargo = len(StockMasLargo) + 1
+    
+    return(StockMasLargo)
+
+def longMarcas(lst_marcas):
+    
+    MarcasMasLargo = lst_marcas[0]
+    x = True
+    for i in lst_marcas:
+        if len(i) > 5:
+            if len(i) > len(MarcasMasLargo):
+                MarcasMasLargo = i
+                x = False
+        elif x:
+            MarcasMasLargo = ('0' * 5)
+    MarcasMasLargo = len(MarcasMasLargo) + 1
+    
+    return(MarcasMasLargo)
 
 'funcion para dar de alta un producto y agregarlo a las listas correspondientes, se pide al usuario que ingrese la informacion del producto a agregar,'
 'y se valida cada uno de los datos ingresados, si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes'
@@ -223,6 +311,13 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 #armar la salida de forma tal que se se tome de base la longitud del producto con mayor cantidad de caracteres
     print("\n--- LISTA DE PRODUCTOS ---")
 
+    IdentMasLargo = longIdent(lst_identificador)
+    DescripMasLargo = longDescrip(lst_descripcion)
+    CategMasLargo = longCateg(lst_categorias)
+    PreciosMasLargo = longPrecios(lst_precios)
+    StockMasLargo = longStocks(lst_stock)
+    MarcasMasLargo = longMarcas(lst_marcas)
+
     if len(lst_identificador) == 0:
         print("No hay productos cargados")
     else:
@@ -230,16 +325,22 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
         'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
         
 
-        print(f"{'Identificador':<15}{'Descripcion':<80}{'Categoria':<50}{'Precio':<10}{'Stock':<10}{'Marca':<30}")
+        print(f"{'Identificador':<{IdentMasLargo}}"
+              f"{'Descripcion':<{DescripMasLargo}}"
+              f"{'Categoria':<{CategMasLargo}}"
+              f"{'Precio':<{PreciosMasLargo}}"
+              f"{'Stock':<{StockMasLargo}}"
+              f"{'Marca':<{MarcasMasLargo}}"
+        )
 
         for i in range(len(lst_identificador)):
             print(
-                f"{lst_identificador[i]:<15}"
-                f"{lst_descripcion[i]:<80}"
-                f"{lst_categorias[i]:<50}"
-                f"{lst_precios[i]:<10}"
-                f"{lst_stock[i]:<10}"
-                f"{lst_marcas[i]:<30}"
+                f"{lst_identificador[i]:<{IdentMasLargo}}"
+                f"{lst_descripcion[i]:<{DescripMasLargo}}"
+                f"{lst_categorias[i]:<{CategMasLargo}}"
+                f"{lst_precios[i]:<{PreciosMasLargo}}"
+                f"{lst_stock[i]:<{StockMasLargo}}"
+                f"{lst_marcas[i]:<{MarcasMasLargo}}"
             )
 
 def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):#actualizar esto
@@ -269,8 +370,6 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
             else:
                 print("Producto no encontrado")
 
-
-
 'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe, '
 'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion, '
 'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida'
@@ -278,6 +377,7 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 
 def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):#actualizar esto
 
+    descripcion = input("Ingrese la descripcion del producto : ")
     if len(lst_descripcion) == 0:
         print("No hay productos actualmente. Debe al menos haber un producto.")
     else:    
@@ -370,3 +470,4 @@ def CasosdePrueba():
     lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
 
     return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
+
