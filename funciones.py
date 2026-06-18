@@ -276,7 +276,6 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 
 def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):#actualizar esto
 
-    descripcion = input("Ingrese la descripcion del producto : ")
     if len(lst_descripcion) == 0:
         print("No hay productos actualmente. Debe al menos haber un producto.")
     else:    
