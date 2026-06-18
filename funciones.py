@@ -44,7 +44,9 @@ def existeProducto(lst_identificador, identificador):
     return False
 
 def validacionIdentificador(identificador):
-    '''Funcion hecha para validar el ingreso de los identificadores de los productos.\nParametro de ingreso: identificador del producto\nProceso: se valida que el identificador ingresado no sea vacio, la longitud del mismo (entre 4 y 10 caracteres), y tenga caracteres alfanumericos o que posea unicamente como caracter especial "_"\nParametro de salida: Si el identificador es valido o no\nAutor: Sergio Nicolas Carraud Fava'''
+    '''Funcion hecha para validar el ingreso de los identificadores de los productos.\nParametro de ingreso: identificador del producto
+    \nProceso: se valida que el identificador ingresado no sea vacio, la longitud del mismo (entre 4 y 10 caracteres), y tenga caracteres alfanumericos o que posea unicamente como caracter especial "_"
+    \nParametro de salida: Si el identificador es valido o no\nAutor: Sergio Nicolas Carraud Fava'''
     #inicializacion de variables
     IdentPorValidar = True
     #validar el identificador de los productos que se ingresan por consola
@@ -86,7 +88,9 @@ def validacionIdentificador(identificador):
     return(identificador,identificadorValida)
 
 def validacionDescripcion(descripcion):
-    '''Funcion para validar la descripcion del producto ingresado. No debe ser vacio y debe iniciar con una letra \nEntrada de la función: Descripción del producto \nProceso de la funcion: Validacion de que la descripción no este vacia y su primer caracter sea una letra, sino se vuelve a solicitar hasta que sea valida \nSalida de la función: Descripcion valida del producto \nAutor: Sergio Nicolas Carraud Fava'''
+    '''Funcion para validar la descripcion del producto ingresado. No debe ser vacio y debe iniciar con una letra 
+    \nEntrada de la función: Descripción del producto \nProceso de la funcion: Validacion de que la descripción no este vacia y su primer caracter sea una letra, sino se vuelve a solicitar hasta que sea valida 
+    \nSalida de la función: Descripcion valida del producto \nAutor: Sergio Nicolas Carraud Fava'''
     Descrip_X_validar = True#Variable que nos servira para iterar hasta que nos devuelva una descripcion valida
     while Descrip_X_validar:
         if descripcion == "":
@@ -103,7 +107,10 @@ def validacionDescripcion(descripcion):
     return(descripcion)
 
 def validacionCategoria(CategoriaProd):
-    '''Funcion para asignar una categoría al producto \nEntrada de la función: Categoría del producto \nProceso de la funcion: Se ingresa la categoría del producto, y se verifica que pertenezca a alguno de las categorías validas; monitores, periféricos, sillas o hardware. En caso de ser otra categoría se le asigna Varios \nSalida de la función: Descripcion válida del producto \nAutor: Sergio Nicolas Carraud Fava'''
+    '''Funcion para asignar una categoría al producto \nEntrada de la función: Categoría del producto 
+    \nProceso de la funcion: Se ingresa la categoría del producto, y se verifica que pertenezca a alguno de las categorías validas; monitores, periféricos,
+    sillas o hardware. En caso de ser otra categoría se le asigna Varios \nSalida de la función: Descripcion válida del producto
+     \nAutor: Sergio Nicolas Carraud Fava'''
     lst_categorias_disponibles = ["Monitores","Sillas","Periféricos","Hardware","Accesorios"]#lista valida de categoría de productos para el sistema.
     for i in range (len(lst_categorias_disponibles)):
         if CategoriaProd.lower() == lst_categorias_disponibles[i].lower():
@@ -140,6 +147,10 @@ def validacionMarca(marcaProd):
 
     return(marcaProd)
 
+
+'funcion para dar de alta un producto y agregarlo a las listas correspondientes, se pide al usuario que ingrese la informacion del producto a agregar,'
+'y se valida cada uno de los datos ingresados, si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes'
+'autor Tomas Kondratowicz'
 def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
     
     descripcion = input("\nDescripción del producto: ")
@@ -203,6 +214,11 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                     # Intercambiar marcas
                     lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
 
+
+
+'funcion para mostrar los productos ordenados por stock de mayor a menor, '
+'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
+'autor Tomas Kondratowicz'
 def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 #armar la salida de forma tal que se se tome de base la longitud del producto con mayor cantidad de caracteres
     print("\n--- LISTA DE PRODUCTOS ---")
@@ -212,6 +228,7 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
     else:
         'La clave es que el número después de < debe ser mayor que la longitud máxima de los datos '
         'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
+        
 
         print(f"{'Identificador':<15}{'Descripcion':<50}{'Categoria':<50}{'Precio':<10}{'Stock':<10}{'Marca':<30}")
 
@@ -251,6 +268,11 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 
             else:
                 print("Producto no encontrado")
+
+'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe, '
+'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion, '
+'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida'
+'autor Tomas Kondratowicz'
 
 def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):#actualizar esto
 
