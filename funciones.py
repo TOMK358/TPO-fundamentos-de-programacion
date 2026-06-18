@@ -145,7 +145,13 @@ def validacionMarca(marcaProd):
     return(marcaProd)
 
 def longIdent(lst_identificador):
-    
+    '''Funcion para obtener la longitud del identificador mas largo de la lista.
+    Entrada de la funcion: Lista de identificadores
+    Proceso de la funcion: Se recorre la lista comparando la longitud de cada identificador,
+    si algun identificador supera los 13 caracteres (longitud del encabezado "Identificador"),
+    se guarda el mas largo, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud del identificador mas largo + 1
+    Autor: Kevin Li'''
     IdentMasLargo = lst_identificador[0]
     x = True
     for i in lst_identificador:
@@ -160,7 +166,13 @@ def longIdent(lst_identificador):
     return(IdentMasLargo)
 
 def longDescrip(lst_descripcion):
-    
+    '''Funcion para obtener la longitud de la descripcion mas larga de la lista.
+    Entrada de la funcion: Lista de descripciones
+    Proceso de la funcion: Se recorre la lista comparando la longitud de cada descripcion,
+    si alguna descripcion supera los 11 caracteres (longitud del encabezado "Descripcion"),
+    se guarda la mas larga, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud de la descripcion mas larga + 1
+    Autor: Kevin Li'''
     DescripMasLargo = lst_descripcion[0]
     x = True
     for i in lst_descripcion:
@@ -175,7 +187,13 @@ def longDescrip(lst_descripcion):
     return(DescripMasLargo)
 
 def longCateg(lst_categorias):
-    
+    '''Funcion para obtener la longitud de la categoria mas larga de la lista.
+    Entrada de la funcion: Lista de categorias
+    Proceso de la funcion: Se recorre la lista comparando la longitud de cada categoria,
+    si alguna categoria supera los 9 caracteres (longitud del encabezado "Categoria"),
+    se guarda la mas larga, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud de la categoria mas larga + 1
+    Autor: Kevin Li'''
     CategMasLargo = lst_categorias[0]
     x = True
     for i in lst_categorias:
@@ -190,7 +208,13 @@ def longCateg(lst_categorias):
     return(CategMasLargo)
 
 def longPrecios(lst_precios):
-    
+    '''Funcion para obtener la longitud del precio mas largo de la lista.
+    Entrada de la funcion: Lista de precios
+    Proceso de la funcion: Se recorre la lista convirtiendo cada precio a string y comparando
+    su longitud, si algun precio supera los 6 caracteres (longitud del encabezado "Precio"),
+    se guarda el mas largo, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud del precio mas largo + 1
+    Autor: Kevin Li'''
     PreciosMasLargo = str(lst_precios[0])
     x = True
     for i in lst_precios:
@@ -206,7 +230,13 @@ def longPrecios(lst_precios):
     return(PreciosMasLargo)
 
 def longStocks(lst_stock):
-    
+    '''Funcion para obtener la longitud del stock mas largo de la lista.
+    Entrada de la funcion: Lista de stocks
+    Proceso de la funcion: Se recorre la lista convirtiendo cada stock a string y comparando
+    su longitud, si algun stock supera los 5 caracteres (longitud del encabezado "Stock"),
+    se guarda el mas largo, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud del stock mas largo + 1
+    Autor: Kevin Li'''
     StockMasLargo = str(lst_stock[0])
     x = True
     for i in lst_stock:
@@ -222,7 +252,13 @@ def longStocks(lst_stock):
     return(StockMasLargo)
 
 def longMarcas(lst_marcas):
-    
+    '''Funcion para obtener la longitud de la marca mas larga de la lista.
+    Entrada de la funcion: Lista de marcas
+    Proceso de la funcion: Se recorre la lista comparando la longitud de cada marca,
+    si alguna marca supera los 5 caracteres (longitud del encabezado "Marca"),
+    se guarda la mas larga, sino se usa la longitud del encabezado como base
+    Salida de la funcion: Longitud de la marca mas larga + 1
+    Autor: Kevin Li'''
     MarcasMasLargo = lst_marcas[0]
     x = True
     for i in lst_marcas:
