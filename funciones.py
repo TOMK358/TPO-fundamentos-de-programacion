@@ -63,8 +63,13 @@ def validacionIdentificador(identificador):
         if identificador == " ":
             print("Ingreso una identificador vacio, no sirve!!!")
             identificador = input("Ingrese un identificador, -1 para salir: ")
+
+        if identificador == "-1":
+            IdentPorValidar = False
+            identificadorValida = False
+
         #Validamos la longitud del identificador ingresado
-        if len(identificador) < 4 or len(identificador) > 10:
+        elif len(identificador) < 4 or len(identificador) > 10:
             print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
             identificador = input("Ingrese un identificador, -1 para salir: ")
         else:
@@ -93,8 +98,6 @@ def validacionIdentificador(identificador):
                     seguirValidando = False
                     IdentPorValidar = False
                 #Condicion de salida
-                if identificador == "-1":
-                    IdentPorValidar = False
 
     return(identificador,identificadorValida)
 
@@ -354,8 +357,6 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                     lst_precios[i], lst_precios[j] = lst_precios[j], lst_precios[i]
                     # Intercambiar marcas
                     lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
-
-
 
 'funcion para mostrar los productos ordenados por stock de mayor a menor, '
 'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
