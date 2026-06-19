@@ -120,12 +120,20 @@ def validacionCategoria(CategoriaProd):
     sillas o hardware. En caso de ser otra categoría se le asigna Varios \nSalida de la función: Descripcion válida del producto
      \nAutor: Sergio Nicolas Carraud Fava'''
     lst_categorias_disponibles = ["Monitores","Sillas","Periféricos","Hardware","Accesorios"]#lista valida de categoría de productos para el sistema.
+    aux1 = False
+    aux2 = False
     for i in range (len(lst_categorias_disponibles)):
         if CategoriaProd.lower() == lst_categorias_disponibles[i].lower():
-            print("\nCategoria del producto ingresada válida")
-        else: 
-            print("\nLa categoría que ingreso para el producto no existe, por lo que se guardara en categoría Varios")
-            CategoriaProd = "Varios"
+            if aux2 == False:
+                aux1 = True
+        else:
+            aux1 = False
+            aux2 = True
+    if aux1:
+        print("\nCategoria del producto ingresada válida")
+    elif aux2:
+        print("\nLa categoría que ingreso para el producto no existe, por lo que se guardara en categoría Varios")
+        CategoriaProd = "Varios"
 
     return(CategoriaProd)
 
@@ -352,7 +360,6 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
 'autor Tomas Kondratowicz'
 def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
-#armar la salida de forma tal que se se tome de base la longitud del producto con mayor cantidad de caracteres
     print("\n--- LISTA DE PRODUCTOS ---")
 
     IdentMasLargo = longIdent(lst_identificador)
