@@ -1,2 +1,2 @@
- validar precio con funciones del tipo is digit o si alpha
-mantenerse en el menu hasta salir
+mantenerse en el menu de eliminar hasta salir
+correcion en menu de modificar producto, cuando se elige si continuar o no
