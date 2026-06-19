@@ -172,16 +172,16 @@ def longIdent(lst_identificador):
     se guarda el mas largo, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud del identificador mas largo + 1
     Autor: Kevin Li'''
-    IdentMasLargo = lst_identificador[0]
+    IdentMasLargo = len(lst_identificador[0])
     x = True
     for i in lst_identificador:
-        if len(i) > 13:
-            if len(i) > len(IdentMasLargo):
-                IdentMasLargo = i
+        if len(i) > len("ID"):
+            if len(i) > IdentMasLargo:
+                IdentMasLargo = len(i)
                 x = False
         elif x:
-            IdentMasLargo = ("0"*13)
-    IdentMasLargo = len(IdentMasLargo) + 1
+            IdentMasLargo = len("ID")
+    IdentMasLargo = IdentMasLargo + 1
     
     return(IdentMasLargo)
 
@@ -193,16 +193,16 @@ def longDescrip(lst_descripcion):
     se guarda la mas larga, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud de la descripcion mas larga + 1
     Autor: Kevin Li'''
-    DescripMasLargo = lst_descripcion[0]
+    DescripMasLargo = len(lst_descripcion[0])
     x = True
     for i in lst_descripcion:
-        if len(i) > 11:
-            if len(i) > len(DescripMasLargo):
-                DescripMasLargo = i
+        if len(i) > len("Descripcion"):
+            if len(i) > DescripMasLargo:
+                DescripMasLargo = len(i)
                 x = False
         elif x:
-            DescripMasLargo = ('0'*11)
-    DescripMasLargo = len(DescripMasLargo) + 1
+            DescripMasLargo = len("Descripcion")
+    DescripMasLargo = DescripMasLargo + 1
     
     return(DescripMasLargo)
 
@@ -214,16 +214,16 @@ def longCateg(lst_categorias):
     se guarda la mas larga, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud de la categoria mas larga + 1
     Autor: Kevin Li'''
-    CategMasLargo = lst_categorias[0]
+    CategMasLargo = len(lst_categorias[0])
     x = True
     for i in lst_categorias:
-        if len(i) > 9:
-            if len(i) > len(CategMasLargo):
-                CategMasLargo = i
+        if len(i) > len("Categoria"):
+            if len(i) > CategMasLargo:
+                CategMasLargo = len(i)
                 x = False
         elif x:
-            CategMasLargo = ('0' * 9)
-    CategMasLargo = len(CategMasLargo) + 1
+            CategMasLargo = len("Categoria")
+    CategMasLargo = CategMasLargo + 1
     
     return(CategMasLargo)
 
@@ -235,17 +235,17 @@ def longPrecios(lst_precios):
     se guarda el mas largo, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud del precio mas largo + 1
     Autor: Kevin Li'''
-    PreciosMasLargo = str(lst_precios[0])
+    PreciosMasLargo = len(str(lst_precios[0]))
     x = True
     for i in lst_precios:
         i_str = str(i)
-        if len(i_str) > 6:
-            if len(i_str) > len(PreciosMasLargo):
-                PreciosMasLargo = i_str
+        if len(i_str) > len("Precio"):
+            if len(i_str) > PreciosMasLargo:
+                PreciosMasLargo = len(i_str)
                 x = False
         elif x:
-            PreciosMasLargo = ('0' * 6)
-    PreciosMasLargo = len(PreciosMasLargo) + 1
+            PreciosMasLargo = len("Precio")
+    PreciosMasLargo = PreciosMasLargo + 1
     
     return(PreciosMasLargo)
 
@@ -257,17 +257,17 @@ def longStocks(lst_stock):
     se guarda el mas largo, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud del stock mas largo + 1
     Autor: Kevin Li'''
-    StockMasLargo = str(lst_stock[0])
+    StockMasLargo = len(str(lst_stock[0]))
     x = True
     for i in lst_stock:
         i_str = str(i)
-        if len(i_str) > 5:
-            if len(i_str) > len(StockMasLargo):
-                StockMasLargo = i
+        if len(i_str) > len("Stock"):
+            if len(i_str) > StockMasLargo:
+                StockMasLargo = len(i)
                 x = False
         elif x:
-            StockMasLargo = ('0' * 5)
-    StockMasLargo = len(StockMasLargo) + 1
+            StockMasLargo = len("Stock")
+    StockMasLargo = StockMasLargo + 1
     
     return(StockMasLargo)
 
@@ -279,16 +279,16 @@ def longMarcas(lst_marcas):
     se guarda la mas larga, sino se usa la longitud del encabezado como base
     Salida de la funcion: Longitud de la marca mas larga + 1
     Autor: Kevin Li'''
-    MarcasMasLargo = lst_marcas[0]
+    MarcasMasLargo = len(lst_marcas[0])
     x = True
     for i in lst_marcas:
-        if len(i) > 5:
-            if len(i) > len(MarcasMasLargo):
-                MarcasMasLargo = i
+        if len(i) > len("Marca"):
+            if len(i) > MarcasMasLargo:
+                MarcasMasLargo = len(i)
                 x = False
         elif x:
-            MarcasMasLargo = ('0' * 5)
-    MarcasMasLargo = len(MarcasMasLargo) + 1
+            MarcasMasLargo = len("Marca")
+    MarcasMasLargo = MarcasMasLargo + 1
     
     return(MarcasMasLargo)
 
@@ -378,7 +378,7 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
         'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
         
 
-        print(f"{'Identificador':<{IdentMasLargo}}"
+        print(f"{'ID':<{IdentMasLargo}}"
               f"{'Descripcion':<{DescripMasLargo}}"
               f"{'Categoria':<{CategMasLargo}}"
               f"{'Precio':<{PreciosMasLargo}}"
