@@ -316,7 +316,15 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
     categoria = validacionCategoria(categoria)
     precio =input("\nPrecio del producto: ")
     precio = validacionPrecio(precio)
-    cantidad = random.randint(1, 50)
+    eleccion = input("\nDesea ingresar manualmente o generar automáticamente utilizando valores aleatorios la cantidad de stock del producto? (m/a) ")
+    while eleccion != "m" and eleccion != "M" and eleccion != "a" and eleccion != "A":
+        eleccion = input("\nError! Por favor, ingrese 'm/M' (manual) o 'a/A' (automatico) para continuar: ")
+    if eleccion == "a" or eleccion == "A":
+        cantidad = random.randint(1, 50)
+    elif eleccion == "m" or eleccion == "M":
+        cantidad = int(input("\nPor favor, ingrese una cantidad exacta de stock: "))
+        while cantidad < 0:
+            cantidad = int(input("\nError! Por favor, ingrese una cantidad exacta de stock: "))
     marca = input("\nMarca del producto: ")
     marca = validacionMarca(marca)
     #si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
@@ -506,7 +514,7 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
                 
                 elif opcion == 6:#ACA HAY QUE METER LA VALIDACION ENCAPSULADA
                     nuevo_identificador = input("Ingrese el nuevo identificador: ")
-                    nuevo_identificador = validacionIdentificador(nuevo_identificador)
+                    (nuevo_identificador, valida) = validacionIdentificador(nuevo_identificador)
                     if existeProducto(lst_identificador, nuevo_identificador):
                         print("El identificador ya existe")
                     else:
@@ -522,7 +530,7 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
             else:
                 descripcion = input("Ingrese la descripcion del producto : ")
 
-        return lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas
+        return (lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
 
 #Casos de prueba.
 def CasosdePrueba():
