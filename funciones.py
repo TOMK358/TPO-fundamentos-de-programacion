@@ -143,10 +143,10 @@ def validacionMarca(marcaProd):
     Marca del producto \nProceso de la funcion: Validacion de que la descripción no este vacia y debe tener una longitud de 3 caracteres alfabeticos, 
     sino se vuelve a solicitar hasta que sea válida \nSalida de la función: Marca válida del producto \nAutor: Sergio Nicolas Carraud Fava'''
     Marca_X_validar = True  #Variable que nos servira para iterar hasta que nos devuelva una descripcion valida
-    AcumuladorLetras=0  #Variable apra asegurarnos que tenga 3 letras
     while Marca_X_validar:
+        AcumuladorLetras = 0  #Variable apra asegurarnos que tenga 3 letras
         if len(marcaProd) < 3:
-            print("\nLa marca que ingreso no es valida, recuerde que debe ingresar una marca valida para el producto.")
+            print("\nLa marca que ingreso no es valida, recuerde que debe ingresar una marca valida minimo de tres caracteres para el producto.")
             marcaProd = input("\nMarca del producto: ")
         else:
             for i in range (len(marcaProd)):
