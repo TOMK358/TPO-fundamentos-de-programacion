@@ -316,9 +316,10 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
     categoria = validacionCategoria(categoria)
     precio =input("\nPrecio del producto: ")
     precio = validacionPrecio(precio)
-    cantidad = random.randint(1, 50)
+    cantidad = 0
     marca = input("\nMarca del producto: ")
     marca = validacionMarca(marca)
+    preferencia = 1
     #si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
     if existeProducto(lst_identificador, identificador):
         print("El identificador ya existe")
@@ -327,14 +328,20 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
         lst_descripcion.append(descripcion)
         lst_categorias.append(categoria)
         lst_precios.append(precio)
+        preferencia = int(input("Ingrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): "))
+        while preferencia != 1 and preferencia != 2:
+            print ("Opcion no valida")
+            preferencia = int(input("Ingrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): "))
+        if preferencia == 1:
+            cantidad = random.randint(1, 50)
+        else:
+            cantidad = int(input("Ingrese la cantidad de stock: "))   
         lst_stock.append(cantidad)
         lst_marcas.append(marca)
 
         print("Producto agregado correctamente")
         
     #    identificador = input("Ingrese una identificador, -1 para salir: ")
-
-    return()
         
 def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
 
@@ -532,14 +539,20 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
 
             else:
                 print("Producto no encontrado")
+
             seguir = input("Desea modificar otro producto? (s/n): ")
-            if seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI":
+            while (seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI") and (seguir != "n" and seguir != "N" and seguir != "no" and seguir != "NO" and seguir != "No" and seguir != "nO"):
+                print("Opcion no valida")
+                seguir = input("Desea modificar otro producto? (s/n): ")
+            if seguir == "n" or seguir == "N" or seguir == "no" or seguir == "NO" or seguir == "No" or seguir == "nO":
                 seguir = False
 
             else:
                 descripcion = input("Ingrese la descripcion del producto : ")
 
         return (lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios,lst_marcas)
+
+
 
 #Casos de prueba.
 def CasosdePrueba():

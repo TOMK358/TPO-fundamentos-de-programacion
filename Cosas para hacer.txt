@@ -2,3 +2,6 @@
 El alcance dice: *"Los datos podrán ingresarse por teclado o generarse automáticamente utilizando valores aleatorios"*. En el código, el stock **siempre** se genera con `random.randint(1, 50)` sin que el usuario pueda elegir ingresarlo manualmente, y no existe ninguna opción para generar un producto completo de forma aleatoria. Solo se cubre "por teclado" para descripción/categoría/precio/marca, y "aleatorio" únicamente para stock.
 
 cuando ingresas un mal ID para eliminar algo, que se quede en eliminar.
+
+
+arreglar el modificar, no encuentra los productos
