@@ -164,6 +164,19 @@ def validacionMarca(marcaProd):
         
     return(marcaProd)
 
+def validacionPrecio(precio):
+    sinPrecio = True
+    while sinPrecio:
+        if precio.isalnum():
+            print("Precio ingresado invalido!!")
+            precio = input("\nIngrese el precio del producto: ")
+        else:
+            print("Precio ingresado valido")
+            precio = float(precio)
+            sinPrecio = False
+    
+    return(precio)
+
 def longIdent(lst_identificador):
     '''Funcion para obtener la longitud del identificador mas largo de la lista.
     Entrada de la funcion: Lista de identificadores
@@ -301,7 +314,8 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
     descripcion = validacionDescripcion(descripcion)
     categoria = input("\nCategoria del producto: ")
     categoria = validacionCategoria(categoria)
-    precio = float(input("\nPrecio del producto: "))
+    precio =input("\nPrecio del producto: ")
+    precio = validacionPrecio(precio)
     cantidad = random.randint(1, 50)
     marca = input("\nMarca del producto: ")
     marca = validacionMarca(marca)
@@ -444,7 +458,6 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
             #Si existe un producto con esa descripción, se obtiene el indice del producto a modificar
             #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
             #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
-
             if existeProducto(lst_descripcion, descripcion):
 
                 indice = lst_descripcion.index(descripcion)
@@ -470,8 +483,8 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
                     print("Descripcion modificada correctamente")
 
                 elif opcion == 2:
-                    nuevo_precio = float(input("Ingrese el nuevo precio: "))
-                    lst_precios[indice] = nuevo_precio
+                    nuevo_precio = input("Ingrese el nuevo precio: ")
+                    lst_precios[indice] = validacionPrecio(nuevo_precio)
                     print("Precio modificado correctamente")
 
                 elif opcion == 3:
@@ -502,9 +515,8 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
 
             else:
                 print("Producto no encontrado")
-            continuar = input("Desea modificar otro producto? (s/n): ")
-            continuar = continuar.lower()
-            if continuar != "s" and continuar != "si":
+            seguir = input("Desea modificar otro producto? (s/n): ")
+            if seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI":
                 seguir = False
 
             else:
@@ -522,4 +534,3 @@ def CasosdePrueba():
     lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
 
     return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
-
