@@ -9,9 +9,6 @@ def main():
     lst_precios = []
     lst_marcas = []
     
-    #lista para casos de prueba
-    (lst_identificador,lst_Descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)= funciones.CasosdePrueba()
-
     opcion = 0
 
     while opcion != "8":
