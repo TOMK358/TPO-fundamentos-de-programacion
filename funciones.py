@@ -391,39 +391,49 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
 'autor Tomas Kondratowicz'
 def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
-    print("\n--- LISTA DE PRODUCTOS ---")
+    if (lst_identificador != [] or
+        lst_descripcion != [] or
+        lst_categorias != [] or
+        lst_precios != [] or
+        lst_stock != [] or
+        lst_marcas != []
+        ):
+    
+        print("\n--- LISTA DE PRODUCTOS ---")
 
-    IdentMasLargo = longIdent(lst_identificador)
-    DescripMasLargo = longDescrip(lst_descripcion)
-    CategMasLargo = longCateg(lst_categorias)
-    PreciosMasLargo = longPrecios(lst_precios)
-    StockMasLargo = longStocks(lst_stock)
-    MarcasMasLargo = longMarcas(lst_marcas)
+        IdentMasLargo = longIdent(lst_identificador)
+        DescripMasLargo = longDescrip(lst_descripcion)
+        CategMasLargo = longCateg(lst_categorias)
+        PreciosMasLargo = longPrecios(lst_precios)
+        StockMasLargo = longStocks(lst_stock)
+        MarcasMasLargo = longMarcas(lst_marcas)
 
-    if len(lst_identificador) == 0:
-        print("No hay productos cargados")
-    else:
-        'La clave es que el número después de < debe ser mayor que la longitud máxima de los datos '
-        'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
-        
+        if len(lst_identificador) == 0:
+            print("No hay productos cargados")
+        else:
+            'La clave es que el número después de < debe ser mayor que la longitud máxima de los datos '
+            'de esa columna. En este caso la descripción necesita al menos unos 35-40 caracteres para que no se pise con Categoría.'
+            
 
-        print(f"{'ID':<{IdentMasLargo}}"
-              f"{'Descripcion':<{DescripMasLargo}}"
-              f"{'Categoria':<{CategMasLargo}}"
-              f"{'Precio':<{PreciosMasLargo}}"
-              f"{'Stock':<{StockMasLargo}}"
-              f"{'Marca':<{MarcasMasLargo}}"
-        )
-
-        for i in range(len(lst_identificador)):
-            print(
-                f"{lst_identificador[i]:<{IdentMasLargo}}"
-                f"{lst_descripcion[i]:<{DescripMasLargo}}"
-                f"{lst_categorias[i]:<{CategMasLargo}}"
-                f"{lst_precios[i]:<{PreciosMasLargo}}"
-                f"{lst_stock[i]:<{StockMasLargo}}"
-                f"{lst_marcas[i]:<{MarcasMasLargo}}"
+            print(f"{'ID':<{IdentMasLargo}}"
+                  f"{'Descripcion':<{DescripMasLargo}}"
+                  f"{'Categoria':<{CategMasLargo}}"
+                  f"{'Precio':<{PreciosMasLargo}}"
+                  f"{'Stock':<{StockMasLargo}}"
+                  f"{'Marca':<{MarcasMasLargo}}"
             )
+
+            for i in range(len(lst_identificador)):
+                print(
+                    f"{lst_identificador[i]:<{IdentMasLargo}}"
+                    f"{lst_descripcion[i]:<{DescripMasLargo}}"
+                    f"{lst_categorias[i]:<{CategMasLargo}}"
+                    f"{lst_precios[i]:<{PreciosMasLargo}}"
+                    f"{lst_stock[i]:<{StockMasLargo}}"
+                    f"{lst_marcas[i]:<{MarcasMasLargo}}"
+                )
+    else:
+        print("ERROR! NO TENES NADA DE PRODUCTO! PRIMERO AGREGE UN PRODUCTO AL SISTEMA!")
 
 def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):#actualizar esto
     Mantener_Eliminar=True
@@ -558,19 +568,19 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
             else:
                 descripcion = input("Ingrese la descripcion del producto : ")
 
-        return lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas
+        return (lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
 
 
 
 
 
 #Casos de prueba.
-def CasosdePrueba():
-    lst_identificador =["MON_001","Silla01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
-    lst_descripcion = ["Monitor OLed Razer curvo 40'","Silla Ergonómica gamer Corsair - Roja","Mouse asus Next Gaming Inalambrico","Memoria ram 16gb SATA DDR5","Memoria de almacenamiento Kingston SSD 1 TB - RED - 4,5'"]
-    lst_stock = [random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50)]
-    lst_categorias = ["Monitor","Sillas","Periféricos","Hardware","Hardware"]
-    lst_precios = [44.95,75,20,80,200]
-    lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
+# def CasosdePrueba():
+#     lst_identificador =["MON_001","Silla01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
+#     lst_descripcion = ["Monitor OLed Razer curvo 40'","Silla Ergonómica gamer Corsair - Roja","Mouse asus Next Gaming Inalambrico","Memoria ram 16gb SATA DDR5","Memoria de almacenamiento Kingston SSD 1 TB - RED - 4,5'"]
+#     lst_stock = [random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50)]
+#     lst_categorias = ["Monitor","Sillas","Periféricos","Hardware","Hardware"]
+#     lst_precios = [44.95,75,20,80,200]
+#     lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
 
-    return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
+#     return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
