@@ -124,10 +124,8 @@ def validacionCategoria(CategoriaProd):
     aux2 = False
     for i in range (len(lst_categorias_disponibles)):
         if CategoriaProd.lower() == lst_categorias_disponibles[i].lower():
-            if aux2 == False:
-                aux1 = True
+            aux1 = True
         else:
-            aux1 = False
             aux2 = True
     if aux1:
         print("\nCategoria del producto ingresada válida")
