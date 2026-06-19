@@ -1,2 +1,10 @@
- validar precio con funciones del tipo is digit o si alpha
-mantenerse en el menu hasta salir
+
+1. Eliminar producto (Baja) — faltan dos validaciones
+La función `eliminarProducto` valida que el identificador exista, pero:
+- No pide **confirmación al usuario** antes de eliminar (el PDF lo exige explícitamente: *"Antes de realizar la eliminación, el sistema deberá solicitar confirmación al usuario"*).
+- No verifica que el **stock sea igual a 0**. El PDF dice *"Solo se podrá eliminar un producto cuyo stock disponible sea igual a cero"*, y el código elimina sin mirar el stock en absoluto.
+
+**3. Alta de productos — no hay opción de carga manual vs. aleatoria**
+El alcance dice: *"Los datos podrán ingresarse por teclado o generarse automáticamente utilizando valores aleatorios"*. En el código, el stock **siempre** se genera con `random.randint(1, 50)` sin que el usuario pueda elegir ingresarlo manualmente, y no existe ninguna opción para generar un producto completo de forma aleatoria. Solo se cubre "por teclado" para descripción/categoría/precio/marca, y "aleatorio" únicamente para stock.
+
+cuando ingresas un mal ID para eliminar algo, que se quede en eliminar.
