@@ -469,12 +469,15 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                     print("Producto no encontrado")
             
 
-'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe, '
-'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion, '
-'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida'
-'autor Tomas Kondratowicz'
+
 
 def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):#actualizar esto
+
+    'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe \n, '
+    'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion \n, '
+    'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida \n'
+    'autor Tomas Kondratowicz'
+
 
     descripcion = input("Ingrese la descripcion del producto : ")
     if len(lst_descripcion) == 0:

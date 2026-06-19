@@ -5,3 +5,6 @@ cuando ingresas un mal ID para eliminar algo, que se quede en eliminar.
 
 
 arreglar el modificar, no encuentra los productos
+
+
+validar q el precio sea positivo
