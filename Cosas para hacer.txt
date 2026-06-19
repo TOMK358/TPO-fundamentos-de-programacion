@@ -1,3 +1,2 @@
-ACA PONGAN TODO LO QUE QUIERAN Q SE HAGA EN ESTE PROYECTO
-
-MENU CON ...
+ validar precio con funciones del tipo is digit o si alpha
+mantenerse en el menu hasta salir
