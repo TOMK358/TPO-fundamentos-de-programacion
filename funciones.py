@@ -73,6 +73,9 @@ def validacionIdentificador(identificador):
             while seguirValidando:
                 identificadorNoValida = False
                 identificadorValida = False
+                while len(identificador) < 4 or len(identificador) > 10:
+                    print("La longitud del identificador es invalida, ingrese una longitud valida para el identificador!!")
+                    identificador = input("Ingrese un identificador, -1 para salir: ")
                 for i in range (len(identificador)):
                     if identificador[i] == "_"  or (("A"<=identificador[i] <="Z") or ("a"<=identificador[i] <="z")) or ("0"<=identificador[i] <="9"):
                         if identificadorNoValida != True:
