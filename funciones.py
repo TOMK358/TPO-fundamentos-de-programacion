@@ -25,7 +25,7 @@ def ingresar_opcionMenu():
 def ingresarPositivo(msg):
     num = int(input(msg))
 
-    while num <= 0:
+    while num < 0:
         print("Error, debe ser positivo")
         num = int(input(msg))
 
@@ -411,31 +411,48 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
             )
 
 def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):#actualizar esto
+    Mantener_Eliminar=True
+
     if len(lst_identificador) == 0:
         print("No hay productos actualmente. Debe al menos haber un producto.")
     else:    
-        #previo debemos validar si la lista esta vacia....
-        identificador = input("Ingrese el identificador del producto (-1 para finalizar): ")
-        (identificador,identificadorValida) = validacionIdentificador(identificador)
+        while Mantener_Eliminar:
+            #previo debemos validar si la lista esta vacia....
+            identificador = input("Ingrese el identificador del producto (-1 para finalizar): ")
+            (identificador,identificadorValida) = validacionIdentificador(identificador)
+            if identificador == "-1":
+                Mantener_Eliminar = False
+            if identificadorValida:
+            #si el identificador existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el identificador, el stock y nombre de las listas correspondientes
+                if existeProducto(lst_identificador, identificador):
+                    eleccion_Borrar = input("Prodcuto encontrado, desea eliminarlo? Ingrese Si para continuar... ")
+                    if eleccion_Borrar.lower() == "si":
+                        for i in range(len(lst_identificador)):
+                            if lst_identificador[i] == identificador:
+                                indice = i
+                            if lst_stock[i] !=0:
+                                HayStock = True
+                            else:
+                                lst_identificador.pop(indice)
+                                lst_stock.pop(indice)
+                                lst_descripcion.pop(indice)
+                                lst_categorias.pop(indice)
+                                lst_precios.pop(indice)
+                                lst_marcas.pop(indice)
 
-        if identificadorValida:
-        #si el identificador existe, se obtiene el indice del producto a eliminar, y se eliminan tanto el identificador, el stock y nombre de las listas correspondientes
-            if existeProducto(lst_identificador, identificador):
-                indice = -1
-                for i in range(len(lst_identificador)):
-                    if lst_identificador[i] == identificador:
-                        indice = i
-                lst_identificador.pop(indice)
-                lst_stock.pop(indice)
-                lst_descripcion.pop(indice)
-                lst_categorias.pop(indice)
-                lst_precios.pop(indice)
-                lst_marcas.pop(indice)
+                                print("Producto eliminado correctamente")
+                                Mantener_Eliminar = False
 
-                print("Producto eliminado correctamente")
+                        if HayStock:
+                            print("El producto ingresado tiene STOCK, no se puede borrar.")
+                            print("Se regresa al menu anterior")
+                    
+                    Mantener_Eliminar=False
+                    print("Se regresa al menu anterior")
 
-            else:
-                print("Producto no encontrado")
+                else:
+                    print("Producto no encontrado")
+            
 
 'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe, '
 'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion, '
@@ -522,11 +539,11 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
             else:
                 descripcion = input("Ingrese la descripcion del producto : ")
 
-        return lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas
+        return (lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios,lst_marcas)
 
 #Casos de prueba.
 def CasosdePrueba():
-    lst_identificador =["MON_001","SillaGamer01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
+    lst_identificador =["MON_001","Silla01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
     lst_descripcion = ["Monitor OLed Razer curvo 40'","Silla Ergonómica gamer Corsair - Roja","Mouse asus Next Gaming Inalambrico","Memoria ram 16gb SATA DDR5","Memoria de almacenamiento Kingston SSD 1 TB - RED - 4,5'"]
     lst_stock = [random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50)]
     lst_categorias = ["Monitor","Sillas","Periféricos","Hardware","Hardware"]

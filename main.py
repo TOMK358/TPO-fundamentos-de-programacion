@@ -42,8 +42,8 @@ def main():
                     lst_identificador,
                     lst_Descripcion,
                     lst_categorias,
-                    lst_precios,
                     lst_stock,
+                    lst_precios,
                     lst_marcas
                 )
 
