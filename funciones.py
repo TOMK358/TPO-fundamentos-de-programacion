@@ -36,17 +36,25 @@ def existeProducto(lst_identificador, identificador):
     #recorre la lista de identificadoers y si encuentra el identificador ingresado, devuelve True, sino devuelve False
     for i in range(len(lst_identificador)):
         if lst_identificador[i] == identificador:
-            print("El producto existe!")
+            variableExiste = True
+            
             return True
         else:
-            print("El producto no existe!")
+            variableExiste = False
+    
+    if variableExiste:
+        print("El producto existe!")
+    else:
+        print("El producto no existe!")
 
     return False
 
 def validacionIdentificador(identificador):
-    '''Funcion hecha para validar el ingreso de los identificadores de los productos.\nParametro de ingreso: identificador del producto
+    '''Funcion hecha para validar el ingreso de los identificadores de los productos.
+    \nParametro de ingreso: identificador del producto
     \nProceso: se valida que el identificador ingresado no sea vacio, la longitud del mismo (entre 4 y 10 caracteres), y tenga caracteres alfanumericos o que posea unicamente como caracter especial "_"
-    \nParametro de salida: Si el identificador es valido o no\nAutor: Sergio Nicolas Carraud Fava'''
+    \nParametro de salida: Si el identificador es valido o no
+    \nAutor: Sergio Nicolas Carraud Fava'''
     #inicializacion de variables
     IdentPorValidar = True
     #validar el identificador de los productos que se ingresan por consola
@@ -418,7 +426,6 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
         print("No hay productos actualmente. Debe al menos haber un producto.")
     else:    
         #previo debemos validar si la lista esta vacia....
-        descripcion = input("Ingrese el identificador del producto (-1 para finalizar): ")
         (descripcion) = validacionDescripcion(descripcion)
 
         seguir = True
