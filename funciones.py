@@ -34,6 +34,8 @@ def ingresarPositivo(msg):
 def existeProducto(lst_identificador, identificador):
     '''Funcion para revisar existencia del identificador en la lista.'''
     #recorre la lista de identificadoers y si encuentra el identificador ingresado, devuelve True, sino devuelve False
+    variableExiste = False
+    
     for i in range(len(lst_identificador)):
         if lst_identificador[i] == identificador:
             variableExiste = True
@@ -167,15 +169,38 @@ def validacionMarca(marcaProd):
 def validacionPrecio(precio):
     sinPrecio = True
     while sinPrecio:
-        if precio.isalnum():
-            print("Precio ingresado invalido!!")
-            precio = input("\nIngrese el precio del producto: ")
-        else:
-            print("Precio ingresado valido")
+        contador_de_puntos = 0
+        auxiliar = ""
+        
+        for i in precio:
+            if i == ".":
+                contador_de_puntos += 1
+                auxiliar += "0"
+            else:
+                auxiliar += i
+        
+        if auxiliar.isdigit() and auxiliar != "0" and contador_de_puntos < 2:
+            print("\nPrecio ingresado valido!")
             precio = float(precio)
             sinPrecio = False
-    
+        else:
+            precio = input("\nERROR! Por favor ingrese un numero positivo para el precio del producto: ")
+                    
     return(precio)
+
+def validacionStock(cantidad):
+    sinStock = True
+    while sinStock:
+        if cantidad.isdigit():
+            print("\nStock ingresado valido")
+            cantidad = int(cantidad)
+            sinStock = False
+        else:
+            print("\nStock ingresado invalido!!")
+            cantidad = input("\nPor favor ingrese nuevamente el stock del producto en numeros enteros: ")
+    
+    return(cantidad)
+
 
 def longIdent(lst_identificador):
     '''Funcion para obtener la longitud del identificador mas largo de la lista.
@@ -314,20 +339,20 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
     descripcion = validacionDescripcion(descripcion)
     categoria = input("\nCategoria del producto: ")
     categoria = validacionCategoria(categoria)
-    precio =input("\nPrecio del producto: ")
+    precio = input("\nPrecio del producto: ")
     precio = validacionPrecio(precio)
-    eleccion = input("\nDesea ingresar manualmente o generar automáticamente utilizando valores aleatorios la cantidad de stock del producto? (m/a) ")
-    while eleccion != "m" and eleccion != "M" and eleccion != "a" and eleccion != "A":
-        eleccion = input("\nError! Por favor, ingrese 'm/M' (manual) o 'a/A' (automatico) para continuar: ")
-    if eleccion == "a" or eleccion == "A":
+    preferencia = input("\nIngrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): ")
+    while preferencia != "1" and preferencia != "2":
+        preferencia = input("Error! Opcion no valida! Por favor, ingrese nuevamente (1. random (1 a 50), 2. manual): ")
+    if preferencia == "1":
         cantidad = random.randint(1, 50)
-    elif eleccion == "m" or eleccion == "M":
-        cantidad = int(input("\nPor favor, ingrese una cantidad exacta de stock: "))
-        while cantidad < 0:
-            cantidad = int(input("\nError! Por favor, ingrese una cantidad exacta de stock: "))
+        print(f"Se asigno {cantidad} de stock!")
+    else:
+        cantidad = input("\nIngresar la cantidad que quiere de stock: ")
+        cantidad = validacionStock(cantidad)
+        print("La cantidad de stock asigno correctamente!")
     marca = input("\nMarca del producto: ")
     marca = validacionMarca(marca)
-    preferencia = 1
     #si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
     if existeProducto(lst_identificador, identificador):
         print("El identificador ya existe")
@@ -336,14 +361,6 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
         lst_descripcion.append(descripcion)
         lst_categorias.append(categoria)
         lst_precios.append(precio)
-        preferencia = int(input("Ingrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): "))
-        while preferencia != 1 and preferencia != 2:
-            print ("Opcion no valida")
-            preferencia = int(input("Ingrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): "))
-        if preferencia == 1:
-            cantidad = random.randint(1, 50)
-        else:
-            cantidad = int(input("Ingrese la cantidad de stock: "))   
         lst_stock.append(cantidad)
         lst_marcas.append(marca)
 
