@@ -475,6 +475,7 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                             if lst_stock[i] !=0:
                                 HayStock = True
                             else:
+                                HayStock = False
                                 lst_identificador.pop(indice)
                                 lst_stock.pop(indice)
                                 lst_descripcion.pop(indice)
