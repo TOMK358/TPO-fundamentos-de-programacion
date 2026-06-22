@@ -498,102 +498,110 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                 else:
                     print("Producto no encontrado")
             
+def modificarproducto(lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
+    if len(lst_identificador) == 0:
+        print("No hay productos cargados")
+        return
 
+    seguir = True
 
-def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):#actualizar esto
+    while seguir:
 
-    'funcion para modificar un producto, se pide al usuario que ingrese la descripcion del producto a modificar, si el producto existe \n, '
-    'se muestra un sub menu con las opciones de modificar cada atributo del producto, y se pide al usuario que seleccione una opcion \n, '
-    'si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida \n'
-    'autor Tomas Kondratowicz'
+        identificador = input("\nIngrese el identificador del producto a modificar: ")
 
+        if existeProducto(lst_identificador, identificador):
 
-    descripcion = input("Ingrese la descripcion del producto : ")
-    if len(lst_descripcion) == 0:
-        print("No hay productos actualmente. Debe al menos haber un producto.")
-    else:    
-        #previo debemos validar si la lista esta vacia....
-        (descripcion) = validacionDescripcion(descripcion)
+            indice = -1
 
-        seguir = True
+            for i in range(len(lst_identificador)):
+                if lst_identificador[i] == identificador:
+                    indice = i
 
-        while seguir:
+            print("\n--- MODIFICAR PRODUCTO ---")
+            print("1. Descripcion")
+            print("2. Precio")
+            print("3. Stock")
+            print("4. Marca")
+            print("5. Categoria")
+            print("6. Identificador")
 
-            #Si existe un producto con esa descripción, se obtiene el indice del producto a modificar
-            #luego se muestra un sub menu con las opciones de modificar cada atributo del producto, 
-            #y se pide al usuario que seleccione una opcion, si la opcion seleccionada no es valida, se pide nuevamente hasta que sea valida
-            if existeProducto(lst_descripcion, descripcion):
+            opcion = input("Seleccione una opcion: ")
 
-                indice = lst_descripcion.index(descripcion)
+            while opcion != "1" and opcion != "2" and opcion != "3" and opcion != "4" and opcion != "5" and opcion != "6":
+                print("Opcion invalida")
+                opcion = input("Seleccione una opcion: ")
 
-                print("1. Modificar descripcion del producto")
-                print("2. Modificar precio")
-                print("3. Modificar stock")
-                print("4. Modificar marca del fabricante")
-                print("5. Modificar categoria")
-                print("6. Modificar identificador")
-                print("8. Salir")
+            if opcion == "1":
 
-                opcion = int(input("Seleccione una opcion: "))
+                nueva_descripcion = input("Ingrese la nueva descripcion: ")
+                nueva_descripcion = validacionDescripcion(nueva_descripcion)
 
-                while (opcion < 1 or opcion > 6) and opcion != 8:
-                    print("Opcion no valida")
-                    opcion = int(input("Seleccione una opcion: "))
+                lst_descripcion[indice] = nueva_descripcion
 
-                if opcion == 1:
-                    nueva_descripcion = input("Ingrese la nueva descripcion: ")
-                    nueva_descripcion = validacionDescripcion(nueva_descripcion)
-                    lst_descripcion[indice] = nueva_descripcion
-                    print("Descripcion modificada correctamente")
+                print("Descripcion modificada correctamente")
 
-                elif opcion == 2:
-                    nuevo_precio = ingresarPositivo("Ingrese el nuevo precio: ")
-                    lst_precios[indice] = validacionPrecio(nuevo_precio)
-                    print("Precio modificado correctamente")
+            elif opcion == "2":
 
-                elif opcion == 3:
-                    nueva_cantidad = ingresarPositivo("Ingrese la nueva cantidad: ")
-                    lst_stock[indice] = nueva_cantidad
-                    print("Stock modificado correctamente")
+                nuevo_precio = input("Ingrese el nuevo precio: ")
+                nuevo_precio = validacionPrecio(nuevo_precio)
 
-                elif opcion == 4:
-                    nueva_marca = input("Ingrese la nueva marca del fabricante: ")
-                    nueva_marca = validacionMarca(nueva_marca)
-                    lst_marcas[indice] = nueva_marca
-                    print("Marca del fabricante modificada correctamente")
+                lst_precios[indice] = nuevo_precio
 
-                elif opcion == 5:
-                    nueva_categoria = input("Ingrese la nueva categoria: ")
-                    nueva_categoria = validacionCategoria (nueva_categoria)
-                    lst_categorias[indice] = nueva_categoria
-                    print("Categoria modificada correctamente")
-                
-                elif opcion == 6:#ACA HAY QUE METER LA VALIDACION ENCAPSULADA
-                    nuevo_identificador = input("Ingrese el nuevo identificador: ")
-                    (nuevo_identificador, valida) = validacionIdentificador(nuevo_identificador)
+                print("Precio modificado correctamente")
+
+            elif opcion == "3":
+
+                nuevo_stock = ingresarPositivo("Ingrese el nuevo stock: ")
+
+                lst_stock[indice] = nuevo_stock
+
+                print("Stock modificado correctamente")
+
+            elif opcion == "4":
+
+                nueva_marca = input("Ingrese la nueva marca: ")
+                nueva_marca = validacionMarca(nueva_marca)
+
+                lst_marcas[indice] = nueva_marca
+
+                print("Marca modificada correctamente")
+
+            elif opcion == "5":
+
+                nueva_categoria = input("Ingrese la nueva categoria: ")
+                nueva_categoria = validacionCategoria(nueva_categoria)
+
+                lst_categorias[indice] = nueva_categoria
+
+                print("Categoria modificada correctamente")
+
+            elif opcion == "6":
+
+                nuevo_identificador = input("Ingrese el nuevo identificador: ")
+
+                (nuevo_identificador, valido) = validacionIdentificador(nuevo_identificador)
+
+                if valido:
+
                     if existeProducto(lst_identificador, nuevo_identificador):
-                        print("El identificador ya existe")
+                        print("Ese identificador ya existe")
+
                     else:
                         lst_identificador[indice] = nuevo_identificador
-                        print("identificador modificado correctamente")
+                        print("Identificador modificado correctamente")
 
-            else:
-                print("Producto no encontrado")
+        else:
+            print("Producto no encontrado")
 
-            seguir = input("Desea modificar otro producto? (s/n): ")
-            while (seguir != "s" and seguir != "S" and seguir != "si" and seguir != "SI" and seguir != "Si" and seguir != "sI") and (seguir != "n" and seguir != "N" and seguir != "no" and seguir != "NO" and seguir != "No" and seguir != "nO"):
-                print("Opcion no valida")
-                seguir = input("Desea modificar otro producto? (s/n): ")
-            if seguir == "n" or seguir == "N" or seguir == "no" or seguir == "NO" or seguir == "No" or seguir == "nO":
-                seguir = False
+        respuesta = input("Desea modificar otro producto? (s/n): ").lower()
 
-            else:
-                descripcion = input("Ingrese la descripcion del producto : ")
+        while respuesta != "s" and respuesta != "si" and respuesta != "n" and respuesta != "no":
+            print("Opcion no valida")
+            respuesta = input("Desea modificar otro producto? (s/n): ").lower()
 
-        return (lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
-
-
+        if respuesta == "n" or respuesta == "no":
+            seguir = False
 
 
 
