@@ -330,10 +330,11 @@ def longMarcas(lst_marcas):
     
     return(MarcasMasLargo)
 
-'funcion para dar de alta un producto y agregarlo a las listas correspondientes, se pide al usuario que ingrese la informacion del producto a agregar,'
-'y se valida cada uno de los datos ingresados, si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes'
-'autor Tomas Kondratowicz'
+
 def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
+    'funcion para dar de alta un producto y agregarlo a las listas correspondientes, se pide al usuario que ingrese la informacion del producto a agregar,'
+    'y se valida cada uno de los datos ingresados, si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes'
+    'autor Tomas Kondratowicz'
     
     descripcion = input("\nDescripción del producto: ")
     descripcion = validacionDescripcion(descripcion)
@@ -404,10 +405,11 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                     # Intercambiar marcas
                     lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
 
-'funcion para mostrar los productos ordenados por stock de mayor a menor, '
-'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
-'autor Tomas Kondratowicz'
+
 def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
+    'funcion para mostrar los productos ordenados por stock de mayor a menor, '
+    'se muestra el identificador, descripcion, categoria, precio, stock y marca del producto'
+    'autor Tomas Kondratowicz'
     if (lst_identificador != [] or
         lst_descripcion != [] or
         lst_categorias != [] or
@@ -546,7 +548,7 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
                     print("Descripcion modificada correctamente")
 
                 elif opcion == 2:
-                    nuevo_precio = input("Ingrese el nuevo precio: ")
+                    nuevo_precio = ingresarPositivo("Ingrese el nuevo precio: ")
                     lst_precios[indice] = validacionPrecio(nuevo_precio)
                     print("Precio modificado correctamente")
 
@@ -596,12 +598,14 @@ def modificarproducto (lst_identificador,lst_descripcion, lst_categorias, lst_st
 
 
 #Casos de prueba.
-# def CasosdePrueba():
-#     lst_identificador =["MON_001","Silla01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
-#     lst_descripcion = ["Monitor OLed Razer curvo 40'","Silla Ergonómica gamer Corsair - Roja","Mouse asus Next Gaming Inalambrico","Memoria ram 16gb SATA DDR5","Memoria de almacenamiento Kingston SSD 1 TB - RED - 4,5'"]
-#     lst_stock = [random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50)]
-#     lst_categorias = ["Monitor","Sillas","Periféricos","Hardware","Hardware"]
-#     lst_precios = [44.95,75,20,80,200]
-#     lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
+def CasosdePrueba():
+    lst_identificador =["MON_001","Silla01","MOUSE99","RAM_RGB_01","Al_SSD_25"]    
+    lst_descripcion = ["Monitor OLed Razer curvo 40'","Silla Ergonómica gamer Corsair - Roja","Mouse asus Next Gaming Inalambrico","Memoria ram 16gb SATA DDR5","Memoria de almacenamiento Kingston SSD 1 TB - RED - 4,5'"]
+    lst_stock = [random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50),random.randint(1, 50)]
+    lst_categorias = ["Monitor","Sillas","Periféricos","Hardware","Hardware"]
+    lst_precios = [44.95,75,20,80,200]
+    lst_marcas = ["Razer","Corsair","ASUS","Samsung","Kingston"]
 
 #     return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
+
+    return(lst_identificador,lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas)
