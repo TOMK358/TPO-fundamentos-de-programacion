@@ -179,7 +179,7 @@ def validacionPrecio(precio):
             else:
                 auxiliar += i
         
-        if auxiliar.isdigit() and auxiliar != "0" and contador_de_puntos < 2:
+        if auxiliar.isdigit() and int(auxiliar) != 0 and contador_de_puntos < 2:
             print("\nPrecio ingresado valido!")
             precio = float(precio)
             sinPrecio = False
