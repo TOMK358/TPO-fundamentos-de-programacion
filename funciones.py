@@ -10,8 +10,6 @@ def mostrarMenu():
     print("4. Mostrar productos")
     print("8. Salir")
 
-#pedimos al usuario que ingrese una opcion para manejar el menu, y comprobamos que la opcion ingresada sea valida (entre 1 y 5, o 8 para salir), si no lo es, 
-# se pide nuevamente la opcion hasta que sea valida
 def ingresar_opcionMenu():
     op = input("Seleccione una opcion: ")
 
@@ -21,7 +19,6 @@ def ingresar_opcionMenu():
 
     return op
 
-#comprueba que el numero ingresado sea positivo, si no lo es, pide nuevamente el numero hasta que sea positivo
 def ingresarPositivo(msg):
     num = int(input(msg))
 
@@ -201,7 +198,6 @@ def validacionStock(cantidad):
     
     return(cantidad)
 
-
 def longIdent(lst_identificador):
     '''Funcion para obtener la longitud del identificador mas largo de la lista.
     Entrada de la funcion: Lista de identificadores
@@ -330,35 +326,34 @@ def longMarcas(lst_marcas):
     
     return(MarcasMasLargo)
 
-
 def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
     'funcion para dar de alta un producto y agregarlo a las listas correspondientes, se pide al usuario que ingrese la informacion del producto a agregar,'
     'y se valida cada uno de los datos ingresados, si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes'
     'autor Tomas Kondratowicz'
     mantener_alta = True
     while mantener_alta:
-        descripcion = input("\nDescripción del producto: ")
-        descripcion = validacionDescripcion(descripcion)
-        categoria = input("\nCategoria del producto: ")
-        categoria = validacionCategoria(categoria)
-        precio = input("\nPrecio del producto: ")
-        precio = validacionPrecio(precio)
-        preferencia = input("\nIngrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): ")
-        while preferencia != "1" and preferencia != "2":
-            preferencia = input("Error! Opcion no valida! Por favor, ingrese nuevamente (1. random (1 a 50), 2. manual): ")
-        if preferencia == "1":
-            cantidad = random.randint(1, 50)
-            print(f"Se asigno {cantidad} de stock!")
-        else:
-            cantidad = input("\nIngresar la cantidad que quiere de stock: ")
-            cantidad = validacionStock(cantidad)
-            print("La cantidad de stock asigno correctamente!")
-        marca = input("\nMarca del producto: ")
-        marca = validacionMarca(marca)
-        #si el identificador ya existe, se muestra un mensaje de error, sino se agrega el producto a las listas correspondientes
         if existeProducto(lst_identificador, identificador):
             print("El identificador ya existe")
         else:
+            descripcion = input("\nDescripción del producto: ")
+            descripcion = validacionDescripcion(descripcion)
+            categoria = input("\nCategoria del producto: ")
+            categoria = validacionCategoria(categoria)
+            precio = input("\nPrecio del producto: ")
+            precio = validacionPrecio(precio)
+            preferencia = input("\nIngrese como quiere ingresar el stock (1. random (1 a 50), 2. manual): ")
+            while preferencia != "1" and preferencia != "2":
+                preferencia = input("Error! Opcion no valida! Por favor, ingrese nuevamente (1. random (1 a 50), 2. manual): ")
+            if preferencia == "1":
+                cantidad = random.randint(1, 50)
+                print(f"Se asigno {cantidad} de stock!")
+            else:
+                cantidad = input("\nIngresar la cantidad que quiere de stock: ")
+                cantidad = validacionStock(cantidad)
+                print("La cantidad de stock asigno correctamente!")
+            marca = input("\nMarca del producto: ")
+            marca = validacionMarca(marca)
+            
             lst_identificador.append(identificador)
             lst_descripcion.append(descripcion)
             lst_categorias.append(categoria)
@@ -378,8 +373,6 @@ def altaProductos(identificador,lst_identificador, lst_descripcion, lst_categori
         elif mantener in ("s", "si"):
             identificador = input("\nIngrese un identificador: ")
             identificador = validacionIdentificador(identificador)
-
-    #    identificador = input("Ingrese una identificador, -1 para salir: ")
 
 
 def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
@@ -417,7 +410,6 @@ def ordenarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
                     lst_precios[i], lst_precios[j] = lst_precios[j], lst_precios[i]
                     # Intercambiar marcas
                     lst_marcas[i], lst_marcas[j] = lst_marcas[j], lst_marcas[i]
-
 
 def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):
     'funcion para mostrar los productos ordenados por stock de mayor a menor, '
@@ -468,7 +460,8 @@ def mostrarProductos(lst_identificador, lst_descripcion, lst_categorias, lst_pre
         print("ERROR! NO TENES NADA DE PRODUCTO! PRIMERO AGREGE UN PRODUCTO AL SISTEMA!")
 
 def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_precios, lst_stock, lst_marcas):#actualizar esto
-    Mantener_Eliminar=True
+    Mantener_Eliminar = True
+    retorno_menu = False
 
     if len(lst_identificador) == 0:
         print("No hay productos actualmente. Debe al menos haber un producto.")
@@ -503,14 +496,15 @@ def eliminarProducto(lst_identificador, lst_descripcion, lst_categorias, lst_pre
 
                         if HayStock:
                             print("El producto ingresado tiene STOCK, no se puede borrar.")
-                            print("Se regresa al menu anterior")
+                            retorno_Menu = True
                     
                     Mantener_Eliminar=False
-                    print("Se regresa al menu anterior")
-
+                    retorno_Menu = True
                 else:
                     print("Producto no encontrado")
-            
+        if retorno_Menu:
+            print("Se regresa al menu anterior")
+
 def modificarproducto(lst_identificador, lst_descripcion, lst_categorias, lst_stock, lst_precios, lst_marcas):
 
     if len(lst_descripcion) == 0:
@@ -616,8 +610,6 @@ def modificarproducto(lst_identificador, lst_descripcion, lst_categorias, lst_st
 
         if respuesta == "n" or respuesta == "no":
             seguir = False
-
-
 
 #Casos de prueba.
 def CasosdePrueba():
